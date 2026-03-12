@@ -1,34 +1,34 @@
 // Here i make a lot's of Operations  List related ...
 
-function linkedList() {
-  return {
-    head: null,
-    tail: null,
-    size: 0,
+// function linkedList() {
+//   return {
+//     head: null,
+//     tail: null,
+//     size: 0,
 
-    // appendNode
-    appendNode: function (data) {
-      let newNode = { value: data, next: null };
-      if (!this.head) {
-        this.head = newNode;
-        this.tail = newNode;
-      } else {
-        this.tail.next = newNode;
-        this.tail = newNode;
-      }
-      this.size++;
-      return;
-    },
-    // traverse a List
-    traversing: function () {
-      let result = [];
-      let currentNode = this.head;
-      while (currentNode !== null) {
-        result.push(currentNode.value);
-        currentNode = currentNode.next;
-      }
-      return result;
-    },
+//     // appendNode
+//     appendNode: function (data) {
+//       let newNode = { value: data, next: null };
+//       if (!this.head) {
+//         this.head = newNode;
+//         this.tail = newNode;
+//       } else {
+//         this.tail.next = newNode;
+//         this.tail = newNode;
+//       }
+//       this.size++;
+//       return;
+//     },
+//     // traverse a List
+//     traversing: function () {
+//       let result = [];
+//       let currentNode = this.head;
+//       while (currentNode !== null) {
+//         result.push(currentNode.value);
+//         currentNode = currentNode.next;
+//       }
+//       return result;
+//     },
 
     // Reverse a List
     // reverseList() {
@@ -182,7 +182,6 @@ function linkedList() {
 
     //   while (slow !== fast) {
     //     slow = slow.next;
-    //     prev = fast;
     //     fast = fast.next;
     //   }
     //   return slow.value;
@@ -230,6 +229,7 @@ function linkedList() {
     // },
 
     // remove a Kth node from end in List
+
     // removeKthNode(k) {
     //   // edge cases...
     //   if (k < 0 || k >= this.size) {
@@ -252,24 +252,95 @@ function linkedList() {
     //     firstPtr = firstPtr.next;
     //     secondPtr = secondPtr.next;
     //   }
+
+    // update Tail
+
+    // if(firstPtr.next === this.tail){
+    //   this.tail = firstPtr;
+    // }
     //   if (firstPtr !== null) {
     //     firstPtr.next = firstPtr.next.next;
     //   }
-
+    // this.head = dummy.next;
     //   this.size--;
-    // },
-  };
-}
+    // return this.head;
 
-let list = new linkedList();
-list.appendNode(10);
-list.appendNode(20);
-list.appendNode(30);
-list.appendNode(40);
-list.appendNode(50);
-list.appendNode(60);
-// traverse a List
-console.log(list.traversing());
+    // },
+
+    // merge k sorted List
+
+    // mergeList(list1, list2) {
+    //   let dummy = { value: -1, next: null };
+
+    //   let current = dummy;
+
+    //   while (list1 !== null && list2 !== null) {
+    //     if (list1.value < list2.value) {
+    //       current.next = list1;
+    //       list1 = list1.next;
+    //     } else {
+    //       current.next = list2;
+    //       list2 = list2.next;
+    //     }
+    //     current = current.next;
+    //   }
+    //   // attached a remaining nodes
+    //   // current.next = list1 !== null ? list1 : list2; (use ternary)
+    //   if (list1 !== null) {
+    //     current.next = list1;
+    //   }
+    //   if (list2 !== null) {
+    //     current.next == list2;
+    //   }
+    //   // update tail
+    //   let newTail = current;
+    //   while (newTail && newTail.next) {
+    //     newTail = newTail.next;
+
+    //     return dummy.next;
+    //   }
+    // },
+
+    //odd even nodes attached (index based - odd even position of node ) in List
+
+    // oddEven() {
+    //   let odd = this.head;
+    //   let even = this.head.next;
+    //   let evenHead = even;
+    //   while (even !== null && even.next !== null) {
+    //     // move odd nodes (points to another odd node)
+    //     odd.next = even.next;
+    //     odd = odd.next;
+
+    //     // move even nodes (points to another even node)
+    //     even.next = odd.next;
+    //     even = even.next;
+    //   }
+    //   odd.next = evenHead;
+
+    //   // update tail
+    //   this.tail = even !== null ? even : odd;
+    //   return this.head;
+    // },
+
+    // 
+  
+
+
+
+
+  // };
+// }
+
+// let list = new linkedList();
+// list.appendNode(10);
+// list.appendNode(20);
+// list.appendNode(30);
+// list.appendNode(40);
+// list.appendNode(50);
+// list.appendNode(60);
+// // traverse a List
+// console.log(list.traversing());
 
 // reverse a List
 // list.reverseList();
