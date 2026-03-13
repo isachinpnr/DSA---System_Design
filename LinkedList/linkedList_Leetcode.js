@@ -675,7 +675,7 @@
 // console.log("After Delete");
 // list.traverse();
 
-// Problem8 : Check a List is Palindrome or not
+// Problem8 : Check a List is Palindrome or not......................................
 // class LinkedList {
 //   constructor() {
 //     this.head = null;
@@ -925,7 +925,7 @@
 // }
 // console.log("Reorder List : ", arr.join(" -> "));
 
-// Problem10: Reverse List - || (special reverse List)
+// Problem10: Reverse List - || (special reverse List)............................
 // class LinkedList {
 //   constructor() {
 //     this.head = null;
@@ -1010,7 +1010,7 @@
 // }
 // console.log('Reverse List :',arr.join(' -> '));
 
-// Problem11 : Reverse List in K-Group
+// Problem11 : Reverse List in K-Group..............................
 
 // class LinkedList {
 //   constructor() {
