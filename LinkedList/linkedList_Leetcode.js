@@ -619,58 +619,485 @@
 
 // Problem7 : delete a node in List
 
-class LinkedList {
-  constructor() {
-    this.head = null;
-    this.tail = null;
-    this.size = 0;
-  }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.size = 0;
+//   }
 
-  appendNode(data) {
-    const node = { value: data, next: null };
+//   appendNode(data) {
+//     const node = { value: data, next: null };
 
-    if (this.head === null) {
-      this.head = node;
-      this.tail = node;
-    } else {
-      this.tail.next = node;
-      this.tail = node;
-    }
-    this.size++;
-    return;
-  }
+//     if (this.head === null) {
+//       this.head = node;
+//       this.tail = node;
+//     } else {
+//       this.tail.next = node;
+//       this.tail = node;
+//     }
+//     this.size++;
+//     return;
+//   }
 
-  traverse() {
-    let current = this.head;
-    let result = [];
+//   traverse() {
+//     let current = this.head;
+//     let result = [];
 
-    while (current !== null) {
-      result.push(current.value);
-      current = current.next;
-    }
+//     while (current !== null) {
+//       result.push(current.value);
+//       current = current.next;
+//     }
 
-    console.log(result.join(" -> "));
-  }
-}
+//     console.log(result.join(" -> "));
+//   }
+// }
 
-// delete node function
-function deleteNode(node) {
-  node.value = node.next.value;
-  node.next = node.next.next;
-}
+// // delete node function
+// function deleteNode(node) {
+//   node.value = node.next.value;
+//   node.next = node.next.next;
+// }
 
-let list = new LinkedList();
-list.appendNode(1);
-list.appendNode(2);
-list.appendNode(3);
-list.appendNode(4);
-list.appendNode(5);
-console.log("Before Delete");
-list.traverse();
-// get node
-let node = list.head.next.next;
+// let list = new LinkedList();
+// list.appendNode(1);
+// list.appendNode(2);
+// list.appendNode(3);
+// list.appendNode(4);
+// list.appendNode(5);
+// console.log("Before Delete");
+// list.traverse();
+// // get node
+// let node = list.head.next.next;
 
-deleteNode(node);
+// deleteNode(node);
 
-console.log("After Delete");
-list.traverse();
+// console.log("After Delete");
+// list.traverse();
+
+// Problem8 : Check a List is Palindrome or not......................................
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.size = 0;
+//   }
+
+//   appendNode(data) {
+//     const node = { value: data, next: null };
+
+//     if (this.head === null) {
+//       this.head = node;
+//       this.tail = node;
+//     } else {
+//       this.tail.next = node;
+//       this.tail = node;
+//     }
+//     this.size++;
+//     return;
+//   }
+
+//   traverse() {
+//     let current = this.head;
+//     let result = [];
+
+//     while (current !== null) {
+//       result.push(current.value);
+//       current = current.next;
+//     }
+
+//     console.log(result.join(" -> "));
+//   }
+// }
+
+// palindrome List check function ///
+
+// function checkPalindrome(list) {
+//   // edge case
+//   if(!list.head || !list.head.next) return true;
+
+//   let current = list.head;
+//   let arr = [];
+
+//   while (current !== null) {
+//     arr.push(current.value);
+//     current = current.next;
+//   }
+
+//   let left = 0;
+//   let right = arr.length - 1;
+
+//   while (left < right) {
+//     if (arr[left] !== arr[right]) {
+//       return false;
+//     }
+//     left++;
+//     right--;
+//   }
+//   return true;
+// }
+
+// Time and Space Complexity
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+
+// use two pointer technique
+// function checkPalindrome() {
+//   // edge case
+//   if (!list.head || !list.head.next) return true;
+
+//   let slow = list.head;
+//   let fast = list.head;
+
+//   // find middle of List
+//   while (fast !== null && fast.next !== null) {
+//     slow = slow.next;
+//     fast = fast.next.next;
+//   }
+
+//   // Reverse Second Half
+//   let prev = null;
+//   let current = slow;
+//   let next = null;
+
+//   while (current !== null) {
+//     next = current.next;
+//     current.next = prev;
+//     prev = current;
+//     current = next;
+//   }
+
+//   let left = list.head;
+//   let right = prev;
+
+//   while (right) {                       - // means while(right !== null)
+//     if (left.value !== right.value) {
+//       return false;
+//     }
+//     left = left.next;
+//     right = right.next;
+//   }
+//   return true;
+// }
+
+// Time and space complexity :
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+
+// let list = new LinkedList();
+// list.appendNode(1);
+// list.appendNode(2);
+// list.appendNode(0);
+// list.appendNode(2);
+// list.appendNode(1);
+// list.traverse();
+
+// let result = checkPalindrome(list);
+// console.log(result);
+
+// Problem9 :  Reorder List...
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.size = 0;
+//   }
+
+//   appendNode(data) {
+//     const node = { value: data, next: null };
+
+//     if (this.head === null) {
+//       this.head = node;
+//       this.tail = node;
+//     } else {
+//       this.tail.next = node;
+//       this.tail = node;
+//     }
+//     this.size++;
+//     return;
+//   }
+
+//   traverse() {
+//     let current = this.head;
+//     let result = [];
+
+//     while (current !== null) {
+//       result.push(current.value);
+//       current = current.next;
+//     }
+
+//     console.log(result.join(" -> "));
+//   }
+// }
+
+// Reorder List function - brute force approach
+// function reorderList(list) {
+//   let current = list.head;
+//   let arr = [];
+//   while (current !== null) {
+//     arr.push(current.value);
+//     current = current.next;
+//   }
+
+//   let newList = [];
+//   let left = 0;
+//   let right = arr.length - 1;
+//   while (left <= right) {
+//     newList.push(arr[left]);
+//     if (left !== right) {
+//       newList.push(arr[right]);
+//     }
+//     left++;
+//     right--;
+//   }
+//   return newList;
+// }
+// Time and Space Complexity :
+// Time Complexity : O(n)
+// Space Complexity : O(n);
+
+// -----------------------------------------------------------------
+
+// key points -
+// 1. find middle
+// 2 . reverse half
+// 3. Join Them
+// function reorderList(head) {  // Reorder List - Optimal Way
+//   // edge case:
+//   if (!head || !head.next) return;
+
+//   // find middle point
+//   let slow = head;
+//   let fast = head;
+
+//   while (fast !== null && fast.next !== null) {
+//     slow = slow.next;
+//     fast = fast.next.next;
+//     // slow is now middle of a List
+//   }
+//   // reverse second Half
+//   let prev = null;
+//   let current = slow;
+//   let next = null;
+//   while (current !== null) {
+//     next = current.next;
+//     current.next = prev;
+//     prev = current;
+//     current = next;
+//   }
+//   // join them
+//   let left = head;
+//   let right = prev; // head of the reversed second half...
+
+//   while (right.next) {
+//     // save next nodes
+//     let temp1 = left.next;
+//     let temp2 = right.next;
+//     // Connect Nodes
+//     left.next = right;
+//     right.next = temp1;
+//     // pointer move
+//     left = temp1;
+//     right = temp2;
+//   }
+// }
+
+// // Time and Space Complexity -
+// // Time Complexity : O(n)
+// // Space Complexity : O(1);
+
+// let list = new LinkedList();
+// list.appendNode(1);
+// list.appendNode(2);
+// list.appendNode(3);
+// list.appendNode(4);
+// list.appendNode(5);
+// list.traverse();
+
+// // reorder list now
+// // print as a special format
+// let result = reorderList(list.head);
+// let arr = [];
+// let current = list.head;
+// while (current !== null) {
+//   arr.push(current.value);
+//   current = current.next;
+// }
+// console.log("Reorder List : ", arr.join(" -> "));
+
+// Problem10: Reverse List - || (special reverse List)............................
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.size = 0;
+//   }
+
+//   appendNode(data) {
+//     const node = { value: data, next: null };
+
+//     if (this.head === null) {
+//       this.head = node;
+//       this.tail = node;
+//     } else {
+//       this.tail.next = node;
+//       this.tail = node;
+//     }
+//     this.size++;
+//     return;
+//   }
+
+//   traverse() {
+//     let current = this.head;
+//     let result = [];
+
+//     while (current !== null) {
+//       result.push(current.value);
+//       current = current.next;
+//     }
+
+//     console.log(result.join(" -> "));
+//   }
+// }
+
+// // reverse a List in Specific Position
+// function reverseListInPosition(head, left, right) {
+//   // edge cases
+//   if (!head || left === right) return head;
+
+//   // cerate dummy node
+//   let dummy = { value: 0, next: head };
+//   let prev = dummy;
+
+//   // move prev to node before left
+//   for (let i = 1; i < left; i++) {
+//     prev = prev.next;
+//   }
+
+//   let current = prev.next;
+
+//   // reverse node between left and right
+//     for (let i = 0; i < right - left; i++) {
+//       let temp = current.next;
+//       current.next = temp.next;
+//       temp.next = prev.next;
+//       prev.next = temp;
+//     }
+//     return dummy.next;
+//   }
+// // Time & Space Complexity
+// // Time Complexity : O(n)
+// // Space Complexity : O(1)
+
+// let list = new LinkedList();
+// list.appendNode(1);
+// list.appendNode(2);
+// list.appendNode(3);
+// list.appendNode(4);
+// list.appendNode(5);
+// list.appendNode(6);
+// list.traverse();
+
+// // reverse List in Position
+
+// let result = reverseListInPosition(list.head, 2, 5);
+// // print list in array forms
+// let arr = [];
+// let current = list.head;
+// while(current !==  null){
+//   arr.push(current.value);
+//   current = current.next;
+// }
+// console.log('Reverse List :',arr.join(' -> '));
+
+// Problem11 : Reverse List in K-Group..............................
+
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.size = 0;
+//   }
+
+//   appendNode(data) {
+//     const node = { value: data, next: null };
+
+//     if (this.head === null) {
+//       this.head = node;
+//       this.tail = node;
+//     } else {
+//       this.tail.next = node;
+//       this.tail = node;
+//     }
+//     this.size++;
+//     return;
+//   }
+
+//   traverse() {
+//     let current = this.head;
+//     let result = [];
+
+//     while (current !== null) {
+//       result.push(current.value);
+//       current = current.next;
+//     }
+
+//     console.log(result.join(" -> "));
+//   }
+// }
+// // reverse list in k group problem
+// function reverseKGroup(head, k) {
+//   if (!head || k === 1) return head;
+
+//   let dummy = { val: 0, next: head };
+//   let prevGroupEnd = dummy;
+
+//   while (true) {
+
+//     let kth = prevGroupEnd;
+
+//     for (let i = 0; i < k; i++) {
+//       kth = kth.next;
+//       if (!kth) return dummy.next;
+//     }
+
+//     let groupStart = prevGroupEnd.next;
+//     let nextGroupStart = kth.next;
+
+//     let prev = nextGroupStart;
+//     let current = groupStart;
+
+//     while (current !== nextGroupStart) {
+//       let temp = current.next;
+//       current.next = prev;
+//       prev = current;
+//       current = temp;
+//     }
+
+//     prevGroupEnd.next = kth;
+//     prevGroupEnd = groupStart;
+//   }
+// }
+// // Time & Space Complexity
+// // Time Complexity : O(n)
+// // Space Complexity : O(1)
+
+// let list = new LinkedList();
+// list.appendNode(1);
+// list.appendNode(2);
+// list.appendNode(3);
+// list.appendNode(4);
+// list.appendNode(5);
+// list.appendNode(6);
+// list.traverse();
+
+// // reverse k group list
+
+// let result = reverseKGroup(list.head, 2);
+// let arr = [];
+// let current = result;
+// while (current !== null) {
+//   arr.push(current.value);
+//   current = current.next;
+// }
+// console.log("Reverse K Group :", arr.join(" -> "));
