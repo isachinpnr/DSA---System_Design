@@ -79,7 +79,7 @@
 // // list1.intersectionList();
 // // console.log(result);
 
-// Problem2:  merge a two k sorted List .....
+// Problem2:  merge a two  sorted List .....
 
 // class LinkedList {
 //   constructor() {
@@ -409,7 +409,7 @@
 // console.log(result);
 // // console.log(list);
 
-// problem6 : middle of Linked List
+// problem6 : middle of Linked List....................................
 // class LinkedList {
 //   constructor() {
 //     this.head = null;
@@ -617,7 +617,7 @@
 // // after check a cycle
 // console.log(list);
 
-// Problem7 : delete a node in List
+// Problem7 : delete a node in List..........................
 
 // class LinkedList {
 //   constructor() {
@@ -1045,7 +1045,7 @@
 //     console.log(result.join(" -> "));
 //   }
 // }
-// // reverse list in k group problem
+// // reverse list in k group problem function
 // function reverseKGroup(head, k) {
 //   if (!head || k === 1) return head;
 
@@ -1101,3 +1101,247 @@
 //   current = current.next;
 // }
 // console.log("Reverse K Group :", arr.join(" -> "));
+
+// Problem12: Merge K Sorted List --------------------------------...........
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.size = 0;
+//   }
+
+//   appendNode(data) {
+//     const node = { value: data, next: null };
+
+//     if (this.head === null) {
+//       this.head = node;
+//       this.tail = node;
+//     } else {
+//       this.tail.next = node;
+//       this.tail = node;
+//     }
+//     this.size++;
+//     return;
+//   }
+
+//   traverse() {
+//     let current = this.head;
+//     let result = [];
+
+//     while (current !== null) {
+//       result.push(current.value);
+//       current = current.next;
+//     }
+
+//     console.log(result.join(" -> "));
+//   }
+// }
+
+// merge k sorted list function- brute force approach .....
+// function mergeTwoLists(list1, list2) {
+//   let dummy = { value: -1, next: null };
+//   let current = dummy;
+
+//   while (list1 !== null && list2 !== null) {
+//     if (list1.value < list2.value) {
+//       current.next = list1;
+//       list1 = list1.next;
+//     } else {
+//       current.next = list2;
+//       list2 = list2.next;
+//     }
+//     current = current.next;
+//   }
+//   current.next = list1 !== null ? list1 : list2;
+
+//   return dummy.next;
+// }
+
+//  function mergeKSortedLists(list1, list2, list3, list4) {
+
+//   let firstMerge = mergeTwoLists(list1, list2);
+//   let secondMerge = mergeTwoLists(list3, list4);
+
+//   return mergeTwoLists(firstMerge, secondMerge);
+
+// }
+// Time & Space Complexity
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+
+// let list1 = new LinkedList();
+// list1.appendNode(1);
+// list1.appendNode(2);
+// list1.appendNode(3);
+// let list2 = new LinkedList();
+// list2.appendNode(0);
+// list2.appendNode(2);
+// list2.appendNode(6);
+
+// let list3 = new LinkedList();
+// list3.appendNode(4);
+// list3.appendNode(5);
+// list3.appendNode(7);
+
+// let list4 = new LinkedList();
+// list4.appendNode(6);
+// list4.appendNode(7);
+// list4.appendNode(8);
+
+// let result = mergeKSortedLists(list1.head, list2.head, list3.head, list4.head);
+// let current = result;
+// let arr = [];
+// while (current !== null) {
+//   arr.push(current.value);
+//   current = current.next;
+// }
+// console.log("K Lists :", arr.join(" -> "));
+
+// Problem13 : Add Two Numbers ....................................
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.size = 0;
+//   }
+
+//   appendNode(data) {
+//     const node = { value: data, next: null };
+
+//     if (this.head === null) {
+//       this.head = node;
+//       this.tail = node;
+//     } else {
+//       this.tail.next = node;
+//       this.tail = node;
+//     }
+//     this.size++;
+//     return;
+//   }
+
+//   traverse() {
+//     let current = this.head;
+//     let result = [];
+
+//     while (current !== null) {
+//       result.push(current.value);
+//       current = current.next;
+//     }
+
+//     console.log(result.join(" -> "));
+//   }
+// }
+// // add two number function
+// function addTwoNumber(list1, list2) {
+  // key steps
+  // 1. Traverse both list simultaneously
+  // 2. Add digits
+  // 3. Add carry
+  // 4. create new node with result digit
+  // 5. update carry
+  // 6. Move Forward
+
+//   let dummy = { value: 0, next: null };
+//   let current = dummy;
+//   let carry = 0;
+
+//   while (list1 !== null || list2 !== null || carry !== 0) {
+//     let sum = carry;
+
+//     if (list1 !== null) {
+//       sum += list1.value;
+//       list1 = list1.next;
+//     }
+//     if(list2 !== null){
+//       sum += list2.value;
+//       list2 = list2.next;
+//     }
+
+//     carry = Math.floor(sum / 10);
+
+//     current.next = {value : sum % 10, next : null};
+
+//     current = current.next;
+
+//   }
+//   return dummy.next;
+// }
+// Time & Space Complexity -
+// Time Complexity : O(max(n + m))
+// Space Complexity : O(max n + m)
+
+// let list1 = new LinkedList();
+// list1.appendNode(9);
+// list1.appendNode(9);
+// list1.appendNode(9);
+// list1.appendNode(9);
+
+// // list1.appendNode(4);
+// // list1.appendNode(3);
+// let list2 = new LinkedList();
+// list2.appendNode(9);
+// list2.appendNode(9);
+// list2.appendNode(9);
+// list2.appendNode(9);
+
+// list2.appendNode(5);
+// list2.appendNode(6);
+// list2.appendNode(4);
+// list2.appendNode(1);
+
+// let result = addTwoNumber(list1.head, list2.head);
+// let current = result;
+// let arr = [];
+// while(current !== null){
+//   arr.push(current.value);
+//   current = current.next;
+// }
+// console.log('After Add Both :',arr.join(' -> '))
+
+// Problem14 : Copy List with Random Pointer.................................
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+  }
+
+  appendNode(data) {
+    const node = { value: data, next: null };
+
+    if (this.head === null) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.next = node;
+      this.tail = node;
+    }
+    this.size++;
+    return;
+  }
+
+  traverse() {
+    let current = this.head;
+    let result = [];
+
+    while (current !== null) {
+      result.push(current.value);
+      current = current.next;
+    }
+
+    console.log(result.join(" -> "));
+  }
+}
+
+// function of random pointer 
+function copyRandomPointer(){
+  
+}
+
+let list = new LinkedList();
+list.appendNode(1);
+list.appendNode(2);
+list.appendNode(3);
+list.appendNode(4);
+list.appendNode(5);
+console.log(list);
