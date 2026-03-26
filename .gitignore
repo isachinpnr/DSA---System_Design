@@ -1,2 +1,18 @@
-// temp.js
-// index.html
+# Node modules (very heavy, never push these)
+node_modules/
+
+# Environment variables (security risk!)
+.env
+*.secrets
+
+# OS generated files (common in Linux/Mac)
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Personal DSA notes or scratchpads
+scratchpad.js
+temp.js
+
