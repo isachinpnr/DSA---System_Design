@@ -141,6 +141,49 @@
 // prettyPrint(root);
 
 
+//  if you find a all the left nodes in entire BT 
+
+// function sumLeftLeaves(root){
+//     let result = [];
+//     // let sum = 0;
+//     function getLeftLeaves(node , isLeft){
+//         // base case
+//         if(node === null) return;
+        
+//         if(isLeft && node.left === null && node.right === null) {
+//             result.push(node.value);
+//         }
+        
+//         getLeftLeaves(node.left , true); // change to right side 
+//         getLeftLeaves(node.right , false);
+//     }
+//     getLeftLeaves(root , false);
+//     return result;
+// }
+// console.log(sumLeftLeaves(root));
+
+// if you want to collect all the leaf node as only one side - left / right
+
+// function lefLeaves(root){
+//     const store = [];
+//     // let sum = 0;
+//     function left(node , isLeft){
+//         if(node === null) return 0;
+        
+//         if(node.left === null && node.right === null){
+//             store.push(node.value);
+//             // sum += node.value;
+//         }
+//         left(node.left);
+//         left(node.right);
+//     }
+//     // left(root.left); // only traverse left subtree
+//     left(root.right); // only traverse right subtree
+//     return store;
+//     // return sum;
+// }
+// console.log(lefLeaves(root));
+
 
 
 

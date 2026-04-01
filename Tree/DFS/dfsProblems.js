@@ -167,7 +167,6 @@
 // Space Complexity : O(h)
 // Key Point : find a max left & right path and add it's value
 
-
 // LCA : Lowest Common Ancestor(LCA) of two nodes p and q is :
 // The lowest (deepest) node in the tree that has BOTH p and q as descendants
 
@@ -203,3 +202,35 @@
 // let q = root.right;
 // console.log(findLCA(root, p, q));
 
+// LeetCode Problem : if you want to make a tree Serialization (best way)
+
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+// const root = new Node(1);
+// root.left = new Node(2);
+// root.right = new Node(5);
+// root.left.left = new Node(3);
+// root.left.right = new Node(4);
+// root.right.right = new Node(6);
+// // console.log(root);
+
+// function flatten(root) {
+//   const result = [];
+//   function store(node) {
+//     if (node === null) {
+//       result.push(null);
+//       return;
+//     }
+//     result.push(node.value);
+//     store(node.left);
+//     store(node.right);
+//   }
+//   store(root);
+//   return result;
+// }
+// console.log(flatten(root));

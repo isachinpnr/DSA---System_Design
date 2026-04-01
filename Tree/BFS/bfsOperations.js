@@ -38,13 +38,13 @@
 // root.right.left = new BFS(13);
 // root.right.left.right = new BFS(15);
 
-// BFS function
+// // BFS function
 // function BFSTraversal(root) {
 //   // base case
 //   if (root === null) return;
 //   // use the optimized queue optimization...
 //   const queue = [];
-// push root in queue (first node)
+// // push root in queue (first node)
 //   queue.push(root);
 
 //   while (queue.length > 0) {
@@ -88,3 +88,5 @@
 //   return result;
 // }
 // console.log(levelOrder(root));
+
+

@@ -114,3 +114,47 @@
 // }
 // console.log(maxPathSum(root));
 
+// remaining problems
+
+// 124. Binary Tree Maximum Path Sum	Maximum sum of any path (any start/end)
+// 437. Path Sum III	Count downward paths (any start) with given sum (remaining topic to learn again)
+
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+// const root = new Node(10);
+// root.left = new Node(5);
+// root.right = new Node(3);
+// root.left.left = new Node(13);
+// root.left.left.left = new Node(3);
+// root.left.left.right = new Node(2);
+// root.left.right = new Node(12);
+// root.left.right.right = new Node(1);
+// root.right.right = new Node(23);
+// root.right.right.left = new Node(11);
+// // console.log(root);
+
+// // find a diameter of any tree
+
+// function diameterTree(root) {
+//   let diameter = 0;
+//   function height(node) {
+//     // base case
+//     if (node === null) return 0;
+
+//     let leftHeight = height(node.left);
+//     let rightHeight = height(node.right);
+//     // update diameter ...
+//     diameter = Math.max(diameter, leftHeight + rightHeight);
+
+//     return Math.max(leftHeight, rightHeight) + 1;
+//   } 
+//   height(root);
+//   return diameter;
+// }
+
+// console.log(diameterTree(root));
