@@ -864,46 +864,62 @@
 // let q = 6;
 // console.log(LCABST(root, p, q));
 
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
-const root = new Node(10);
-root.left = new Node(5);
-root.right = new Node(15);
-root.right.right = new Node(21);
-root.left.right = new Node(7);
-root.left.left = new Node(3);
-root.left.right.left = new Node(6);
-root.left.right.right = new Node(9);
-root.right.left = new Node(13);
-root.right.right.right = new Node(25);
-root.right.right.left = new Node(20);
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+// const root = new Node(10);
+// root.left = new Node(5);
+// root.right = new Node(15);
+// root.right.right = new Node(21);
+// root.left.right = new Node(7);
+// root.left.left = new Node(3);
+// root.left.right.left = new Node(6);
+// root.left.right.right = new Node(9);
+// root.right.left = new Node(13);
+// root.right.right.right = new Node(25);
+// root.right.right.left = new Node(20);
 
 // 35. find ceil and floor in BST
-function findCeil(root, key) {
-  let floor = -1;
-  while (root) {
-    if (root.value === key) {
-      floor = root.value;
-      return floor;
-    }
-    if (key < root.value) {
-      // ceil = root.value;
-      root = root.left;
-    } else {
-      floor = root.value;
-      root = root.right;
-    }
-  }
-  return floor;
-}
-console.log(findCeil(root, 4));
+// function findCeil(root, key) {
+//   let floor = -1;
+//   while (root) {
+//     if (root.value === key) {
+//       floor = root.value;
+//       return floor;
+//     }
+//     if (key < root.value) {
+//       // ceil = root.value;
+//       root = root.left;
+//     } else {
+//       floor = root.value;
+//       root = root.right;
+//     }
+//   }
+//   return floor;
+// }
+// console.log(findCeil(root, 4));
 
 // 36. Range Sum of BST
-function rangeSum(root) {
-  
-}
+// function rangeSum(root, low, high) {
+//   let sum = 0;
+//   // base case
+//   if (root === null) return 0;
+
+//   if (low < root.value) {
+//     sum += rangeSum(root.left, low, high);
+//   }
+//   if (low <= root.value && high >= root.value) {
+//     sum += root.value;
+//   }
+//   if (high > root.value) {
+//     sum += rangeSum(root.right, low, high);
+//   }
+//   return sum;
+// }
+// let low = 3;
+// let high = 9;
+// console.log(rangeSum(root , low , high));

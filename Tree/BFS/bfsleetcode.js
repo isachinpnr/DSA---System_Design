@@ -975,7 +975,7 @@
 //   current.right = originalRight;
 // }
 // console.log(flatten(root));
-// function flow : 
+// function flow :
 // Save right subtree
 // Flatten left subtree
 // Move left → right
@@ -983,4 +983,34 @@
 // Flatten saved right subtree
 // Attach it at tail
 
+// LeetCode : 1609 : Even Odd Tree
 
+// check odd even function
+// function isEvenOddTree(root){
+
+//     let level = 0;
+//     const result = [];
+//     let front = 0;
+//     const queue = [root];
+//     while(front < queue.length){
+//         let levelSize = queue.length - front;
+//         let prev = (level % 2 === 0) ? -Infinity : Infinity;
+//         for(let i = 0; i < levelSize; i++){
+//             const node = queue[front++]
+//             // check parity
+//             if(level % 2 === 0 && node.value % 2 === 0) return false;
+//             if(level % 2 === 1 && node.value % 2 !== 0) return false;
+//             // check order
+//             if(level % 2 === 0 && node.value <= prev) return false;
+//             if(level % 2 === 1 && node.value >= prev) return false;
+
+//             prev = node.value;
+
+//                 if(node.left) queue.push(node.left);
+//                 if(node.right) queue.push(node.right);
+//         }
+//         level++;
+//     }
+//     return true;
+// }
+// console.log(isEvenOddTree(root));
