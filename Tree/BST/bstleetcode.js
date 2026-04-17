@@ -661,7 +661,7 @@
 //     const node = queue[front++];
 // // swap nodes
 //     [node.left , node.right] = [node.right , node.left]
-    
+
 //       if (node.left) queue.push(node.left);
 //       if (node.right) queue.push(node.right);
 //     }
@@ -669,7 +669,7 @@
 // }
 // console.log(invertTree(root));
 
-// LeetCode Problem 437 : Path Sum - III 
+// LeetCode Problem 437 : Path Sum - III
 // function pathSum(root, targetSum) {
 //   // map to store frequency of prefix sums
 //   const prefixSumMap = new Map();
@@ -698,3 +698,49 @@
 // }
 // let targetSum = 8;
 // console.log(pathSum(root, targetSum));
+
+// LeetCode Problem : 572 : Subtree of Another Tree
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+// class Node2 {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+// const root = new Node(3);
+// root.left = new Node(4);
+// root.right = new Node(5);
+// root.left.left = new Node(1);
+// root.left.right = new Node(2);
+// // console.log(root);
+
+// const subRoot = new Node(4);
+// subRoot.left = new Node(1);
+// subRoot.right = new Node(2);
+// // console.log(subRoot);
+
+// // brute - force 
+// function isSubtree(root, subRoot) {
+//   if (!root) return false;
+//   if (isSameTree(root, subRoot)) return true;
+//   return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+// }
+
+// function isSameTree(node1, node2) {
+//   if (!node1 && !node2) return true;
+//   if (!node1 || !node2) return false;
+//   if (node1.value !== node2.value) return false;
+//   return (
+//     isSameTree(node1.left, node2.left) && isSameTree(node1.right, node2.right)
+//   );
+// }
+// console.log(isSubtree(root, subRoot));
+
+// // optimal approach 

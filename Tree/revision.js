@@ -923,3 +923,33 @@
 // let low = 3;
 // let high = 9;
 // console.log(rangeSum(root , low , high));
+
+// Convert Sorted Array to BST
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+
+// function arrayToBST(nums) {
+//   // base case
+//   if (nums.length === 0) return null;
+
+//   function BST(nums, left, right) {
+//     // base case
+//     if (left > right) return null;
+
+//     const mid = Math.floor((left + right) / 2);
+//     const root = new Node(nums[mid]);
+
+//     root.left = BST(nums, left, mid - 1);
+//     root.right = BST(nums, mid + 1, right);
+
+//     return root;
+//   }
+//   return BST(nums, 0, nums.length - 1);
+// }
+// let arr = [1, 2, 3, 4, 5, 6];
+// console.log(arrayToBST(arr));
