@@ -1014,3 +1014,177 @@
 //     return true;
 // }
 // console.log(isEvenOddTree(root));
+
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+// const root = new Node(0);
+// root.left = new Node(1);
+// root.right = new Node(2);
+// root.right.left = new Node(3);
+// const n = 4;
+
+// // LeetCode Problem : 1361 : Validate Binary Tree Nodes
+
+// function validateBinaryTreeNodes(n, leftChild, rightChild) {
+//   // count parent for each node
+//   const parentCount = new Array(n).fill(0);
+
+//   for (let i = 0; i < n; i++) {
+//     // Process left child
+//     if (leftChild !== -1) {
+//       parentCount[leftChild[i]]++;
+//       if (parentCount[leftChild[i]] > 1) {
+//         return false;
+//       }
+//     }
+//     if(rightChild[i] !== -1){
+//       parentCount[rightChild[i]]++;
+//       if(parentCount[rightChild[i]] > 1){
+//         return false;
+//       }
+//     }
+//   }
+
+// find the root (node with parentCount === 0)
+
+// let root = -1;
+// for(let i = 0; i < n; i++){
+//   if(parentCount[i] === 0){
+//     if(root !== -1){
+//       return false;
+//     }
+//     root = i;
+//   }
+// }
+// if(root === -1){
+//   return false;
+// }
+
+// // BFS/DFS from root to count visited nodes & detect cycle
+// const visited = new Array(n).fill(false);
+// const queue = [root];
+// visited[root] = true;
+// let visitedCount = 1;
+
+// while(queue.length > 0){
+//   const node = queue.shift();
+
+// }
+
+// }
+
+// LeetCode Problem : 671 : Second Minimum Node In a Binary Tree
+
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+// const root = new Node(2);
+// root.left = new Node(2);
+// root.right = new Node(5);
+// root.right.left = new Node(5);
+// root.right.right = new Node(7);
+
+// function findSecondMinimumValue(root) {
+//   // base case
+//   if (root === null) return -1;
+//   const result = [];
+//   const queue = [root];
+//   let front = 0;
+
+//   while (front < queue.length) {
+//     const current = queue[front++];
+//     result.push(current.value);
+//     if (current.left !== null) queue.push(current.left);
+//     if (current.right) queue.push(current.right);
+//   }
+//   // const secondMin = [...new Set(result)].sort((a, b) => a - b)[1];
+//   // return secondMin;
+
+//   const unique = [...new Set(result)];
+//   unique.sort((a, b) => a - b);
+//   return unique.length >= 2 ? unique[1] : -1;
+// }
+// console.log(findSecondMinimumValue(root));
+
+// LeetCode Problem : 513 : Find Bottom Left Tree Value
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+
+// const root = new Node(1);
+// root.left = new Node(2);
+// root.left.left = new Node(4);
+// root.right = new Node(3);
+// root.right.left = new Node(5);
+// root.right.left.left = new Node(7);
+// root.right.right = new Node(6);
+
+// function findBottomLeftValue(root) {
+//   const queue = [root];
+
+//   while (queue.length > 0) {
+//     root = queue.shift();
+
+//     if (root.right) queue.push(root.right);
+//     if (root.left) queue.push(root.left);
+//   }
+//   return root.value;
+// }
+
+// console.log(findBottomLeftValue(root));
+
+// LeetCode Problem : 958 : Check Completeness of a Binary Tree 
+
+// class Node{
+//     constructor(value){
+//         this.value = value;
+//         this.left = null;
+//         this.right = null;
+//     }
+// }
+// const root = new Node(1);
+// root.left = new Node(2);
+// root.right = new Node(3);
+// root.left.left = new Node(4);
+// root.left.right = new Node(5);
+// root.right.left = new Node(6);
+
+// function isCompleteTree(root){
+//     // edges case : empty tree is Complete
+//     if(root === null) return true;
+
+//     const queue = [root];
+
+//     let seeNull = false;
+
+//     while(queue.length > 0){
+//         const node = queue.shift();
+
+//         if(node === null){
+//             return true;
+//         }else{
+//             if(seeNull === true){
+//                 return false;
+//             }
+//             queue.push(node.left);
+//             queue.push(node.right);
+//         }
+//     }
+//     return true;
+// }
+
+// console.log(isCompleteTree(root));
+
