@@ -437,44 +437,44 @@
 // function maxProbability(n, edges, succProb, start, end) {
 //     // Build adjacency list
 //     const graph = new Array(n).fill(null).map(() => []);
-    
+
 //     for (let i = 0; i < edges.length; i++) {
 //         const [a, b] = edges[i];
 //         const prob = succProb[i];
 //         graph[a].push([b, prob]);
 //         graph[b].push([a, prob]);
 //     }
-    
+
 //     // Max probability to reach each node
 //     const maxProb = new Array(n).fill(0);
 //     maxProb[start] = 1.0;
-    
+
 //     // Max heap using negative values (since JS doesn't have max-heap)
 //     const pq = [[-1.0, start]];
-    
+
 //     while (pq.length > 0) {
 //         // Sort to get highest probability (most negative = highest positive)
 //         pq.sort((a, b) => a[0] - b[0]);
 //         const [negProb, node] = pq.shift();
 //         const currentProb = -negProb;
-        
+
 //         // If we found a better path already, skip this one
 //         if (currentProb < maxProb[node]) continue;
-        
+
 //         // If we reached the end, we can return early (optional optimization)
 //         if (node === end) return currentProb;
-        
+
 //         // Explore neighbors
 //         for (const [neighbor, edgeProb] of graph[node]) {
 //             const newProb = currentProb * edgeProb;
-            
+
 //             if (newProb > maxProb[neighbor]) {
 //                 maxProb[neighbor] = newProb;
 //                 pq.push([-newProb, neighbor]);
 //             }
 //         }
 //     }
-    
+
 //     return maxProb[end];
 // }
 
@@ -485,5 +485,39 @@
 // ];
 // let succProb = [0.5, 0.5, 0.2];
 // console.log(maxProbability(3, edges, succProb, 0, 2));
+
+// LeetCode Problem : 787 : Cheapest Flights Within K Stops
+
+// function findCheapestPrice(n, flights, src, dst, k) {
+//   let dist = new Array(n).fill(Infinity);
+//   dist[src] = 0;
+
+//   // K stops => K + 1 edges
+//   for (let i = 0; i <= k; i++) {
+//     let temp = [...dist];
+
+//     for (let [from, to, price] of flights) {
+//       if (dist[from] !== Infinity && dist[from] + price < dist[to]) {
+//         temp[to] = dist[from] + price;
+//       }
+//     }
+//     dist = temp;
+//   }
+//   return dist[dst] === Infinity ? -1 : dist[dst];
+// }
+
+// let flights = [
+//   [0, 1, 100],
+//   [1, 2, 100],
+//   [2, 0, 100],
+//   [1, 3, 600],
+//   [2, 3, 200],
+// ];
+// let n = 4;
+// let src = 0;
+// let dst = 3;
+// let k = 1;
+// console.log(findCheapestPrice(n, flights, src, dst, k));
+
 
 //

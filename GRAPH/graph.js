@@ -597,37 +597,75 @@
 
 // Bellman Ford Algorithm ....
 
-function bellmanFord(vertices, edges, source) {
-  const dist = Array(vertices).fill(Infinity);
+// function bellmanFord(vertices, edges, source) {
+//   const dist = Array(vertices).fill(Infinity);
 
-  dist[source] = 0;
+//   dist[source] = 0;
 
-  for (let i = 0; i < vertices - 1; i++) {
-    for (let [u, v, weight] of edges) {
-      if (dist[u] !== Infinity && dist[u] + weight < dist[v]) {
-        dist[v] = dist[u] + weight;
+//   for (let i = 0; i < vertices - 1; i++) {
+//     for (let [u, v, weight] of edges) {
+//       if (dist[u] !== Infinity && dist[u] + weight < dist[v]) {
+//         dist[v] = dist[u] + weight;
+//       }
+//     }
+//   }
+
+//   // negative check cycle
+//   for (let [u, v, weight] of edges) {
+//     if (dist[u] !== Infinity && dist[u] + weight < dist[v]) {
+//       console.log("Negative Weight Cycle Found");
+//       return;
+//     }
+//   }
+//   return dist;
+// }
+// const vertices = 5;
+// const edges = [
+//   [0, 1, -1],
+//   [0, 2, 4],
+//   [1, 2, 3],
+//   [1, 3, 2],
+//   [1, 4, 2],
+//   [3, 2, 5],
+//   [3, 1, 1],
+//   [4, 3, -3],
+// ];
+
+// console.log(bellmanFord(vertices, edges, 0));
+
+// Prim's Algorithm -MST (Minimum Spanning Tree in Graph)...........................................
+
+// what is spanning tree..........
+// 1. connected graph
+// 2.undirected Graph
+// 3. weight graph
+
+// Interview Version of Prim's Algorithm.....
+
+function primMST(graph, n) {
+  const visited = new Set();
+  const heap = [[0, 0]];
+  let mstCost = 0;
+
+  while (heap.length > 0) {
+    heap.sort((a, b) => a[0] - b[0]);
+    const [weight, node] = heap.shift();
+    if (visited.has(node)) continue;
+    visited.add(node);
+    mstCost += weight;
+    for (const [neighbor, edgeWeight] of graph[node]) {
+      if (!visited.has(neighbor)) {
+        heap.push([edgeWeight, neighbor]);
       }
     }
   }
-
-  // negative check cycle
-  for (let [u, v, weight] of edges) {
-    if (dist[u] !== Infinity && dist[u] + weight < dist[v]) {
-      console.log("Negative Weight Cycle Found");
-      return;
-    }
-  }
-  return dist;
+  return mstCost;
 }
-const vertices = 5;
-const edges = [
-  [0, 1, -1],
-  [0, 2, 4],
-  [1, 2, 3],
-  [1, 3, 2],
-  [1, 4, 2],
-  [3, 2, 5],
-  [3, 1, 1],
-  [4, 3, -3],
-];
-console.log(bellmanFord(vertices, edges, 0));
+const graph = {
+  0: [[1, 2], [2, 6]],
+  1: [[0, 2], [3, 3]],
+  2: [[0, 6], [3, 1]],
+  3: [[1, 3], [2, 1]]
+};
+const n = 4;
+console.log(primMST(graph, n));
