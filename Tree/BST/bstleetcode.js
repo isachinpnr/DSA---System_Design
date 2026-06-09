@@ -726,7 +726,7 @@
 // subRoot.right = new Node(2);
 // // console.log(subRoot);
 
-// // brute - force 
+// // brute - force
 // function isSubtree(root, subRoot) {
 //   if (!root) return false;
 //   if (isSameTree(root, subRoot)) return true;
@@ -743,4 +743,23 @@
 // }
 // console.log(isSubtree(root, subRoot));
 
-// // optimal approach 
+// // optimal approach
+
+// LeetCode Problem : 1038 : BST to GST
+
+// function bstToGst(root) {
+//   let runningSum = 0;
+
+//   function reverseInOrder(node) {
+//     if (!node) return;
+
+//     reverseInOrder(node.right);
+//     // update current node
+//     runningSum += node.val;
+//     node.val = runningSum;
+//     reverseInOrder(node.left);
+//   }
+//   reverseInOrder(root);
+//   return root;
+// }
+

@@ -595,7 +595,7 @@
 // console.log(dijkstra(4, graph5, 1));
 // // Expected: [Infinity, 0, 3, 1]
 
-// Bellman Ford Algorithm ....
+// Bellman Ford Algorithm .....
 
 // function bellmanFord(vertices, edges, source) {
 //   const dist = Array(vertices).fill(Infinity);
@@ -640,32 +640,35 @@
 // 2.undirected Graph
 // 3. weight graph
 
-// Interview Version of Prim's Algorithm.....
+// Interview Version of Prim's Algorithm..... (MST - minimum spanning tree)
 
-function primMST(graph, n) {
-  const visited = new Set();
-  const heap = [[0, 0]];
-  let mstCost = 0;
+// function primMST(graph, n) {
+//   const visited = new Set();
+//   const heap = [[0, 0]];
+//   let mstCost = 0;
 
-  while (heap.length > 0) {
-    heap.sort((a, b) => a[0] - b[0]);
-    const [weight, node] = heap.shift();
-    if (visited.has(node)) continue;
-    visited.add(node);
-    mstCost += weight;
-    for (const [neighbor, edgeWeight] of graph[node]) {
-      if (!visited.has(neighbor)) {
-        heap.push([edgeWeight, neighbor]);
-      }
-    }
-  }
-  return mstCost;
-}
-const graph = {
-  0: [[1, 2], [2, 6]],
-  1: [[0, 2], [3, 3]],
-  2: [[0, 6], [3, 1]],
-  3: [[1, 3], [2, 1]]
-};
-const n = 4;
-console.log(primMST(graph, n));
+//   while (heap.length > 0) {
+//     heap.sort((a, b) => a[0] - b[0]);
+//     const [weight, node] = heap.shift();
+//     if (visited.has(node)) continue;
+//     visited.add(node);
+//     mstCost += weight;
+//     for (const [neighbor, edgeWeight] of graph[node]) {
+//       if (!visited.has(neighbor)) {
+//         heap.push([edgeWeight, neighbor]);
+//       }
+//     }
+//   }
+//   return mstCost;
+// }
+// const graph = {
+//   0: [[1, 2], [2, 6]],
+//   1: [[0, 2], [3, 3]],
+//   2: [[0, 6], [3, 1]],
+//   3: [[1, 3], [2, 1]]
+// };
+// const n = 4;
+// console.log(primMST(graph, n));
+
+// Disjoint Set Union | Union Find
+
