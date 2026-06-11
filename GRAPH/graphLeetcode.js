@@ -519,5 +519,52 @@
 // let k = 1;
 // console.log(findCheapestPrice(n, flights, src, dst, k));
 
+// LeetCode Problem : 547 : Number of Provinces
 
-//
+// var findCircleNum = function (isConnected) {
+//   const n = isConnected.length;
+
+//   const parent = Array.from({ length: n }, (_, i) => i);
+
+//   let provinces = n;
+
+//   function find(x) {
+//     if (x !== parent[x]) {
+//       parent[x] = find(parent[x]);
+//     }
+
+//     return parent[x];
+//   }
+
+//   function union(a, b) {
+//     const rootA = find(a);
+//     const rootB = find(b);
+
+//     if (rootA === rootB) {
+//       return false;
+//     }
+
+//     parent[rootB] = rootA;
+
+//     return true;
+//   }
+
+//   for (let i = 0; i < n; i++) {
+//     for (let j = i + 1; j < n; j++) {
+//       if (isConnected[i][j] === 1) {
+//         if (union(i, j)) {
+//           provinces--;
+//         }
+//       }
+//     }
+//   }
+
+//   return provinces;
+// };
+
+// let isConnected = [
+//   [1, 1, 0],
+//   [1, 1, 0],
+//   [0, 0, 1],
+// ];
+// console.log(findCircleNum(isConnected));

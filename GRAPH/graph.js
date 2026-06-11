@@ -670,5 +670,166 @@
 // const n = 4;
 // console.log(primMST(graph, n));
 
-// Disjoint Set Union | Union Find
+// Disjoint Set Union | Union Find -----
 
+// class DSU {
+
+//     constructor(n) {
+
+//         this.parent = Array.from(
+//             { length: n },
+//             (_, i) => i
+//         );
+
+//         this.rank = new Array(n).fill(1);
+//     }
+
+//     find(x) {
+
+//         if(x !== this.parent[x]) {
+
+//             this.parent[x] =
+//                 this.find(this.parent[x]);
+
+//         }
+
+//         return this.parent[x];
+//     }
+
+//     union(a, b) {
+
+//         let rootA = this.find(a);
+
+//         let rootB = this.find(b);
+
+//         if(rootA === rootB) {
+//             return false;
+//         }
+
+//         if(this.rank[rootA] < this.rank[rootB]) {
+
+//             [rootA, rootB] =
+//             [rootB, rootA];
+
+//         }
+
+//         this.parent[rootB] = rootA;
+
+//         if(this.rank[rootA] === this.rank[rootB]) {
+
+//             this.rank[rootA]++;
+
+//         }
+
+//         return true;
+//     }
+
+// }
+
+// const dsu = new DSU(7);
+
+// dsu.union(0,1);
+// dsu.union(1,2);
+
+// dsu.union(4,5);
+
+// console.log(
+//     dsu.find(0) === dsu.find(2)
+// );
+
+// console.log(
+//     dsu.find(0) === dsu.find(4)
+// );
+
+// dsu.union(2,4);
+
+// console.log(
+//     dsu.find(0) === dsu.find(5)
+// );
+
+// console.log(dsu.parent);
+
+// Kruskal's Algorithm Steps.....
+// 1. Sort all edges by weight.
+// 2. Create DSU.
+// 3. Traverse edges in sorted order.
+// 4. If edge creates cycle:
+//       Skip it.
+// 5. Otherwise:
+//       Add edge to MST
+//       Union both nodes
+// 6. Continue until MST contains
+//    V - 1 edges.
+
+// class DSU {
+//   constructor(n) {
+//     this.parent = Array.from({ length: n }, (_, i) => i);
+
+//     this.rank = new Array(n).fill(1);
+//   }
+
+//   find(x) {
+//     if (x !== this.parent[x]) {
+//       this.parent[x] = this.find(this.parent[x]);
+//     }
+
+//     return this.parent[x];
+//   }
+
+//   union(a, b) {
+//     let rootA = this.find(a);
+//     let rootB = this.find(b);
+
+//     if (rootA === rootB) {
+//       return false;
+//     }
+
+//     if (this.rank[rootA] < this.rank[rootB]) {
+//       [rootA, rootB] = [rootB, rootA];
+//     }
+
+//     this.parent[rootB] = rootA;
+
+//     if (this.rank[rootA] === this.rank[rootB]) {
+//       this.rank[rootA]++;
+//     }
+
+//     return true;
+//   }
+// }
+
+// // kruskal's function ....
+
+// function kruskal(n, edges) {
+//   edges.sort((a, b) => a[2] - b[2]);
+
+//   const dsu = new DSU(n);
+
+//   let mstCost = 0;
+
+//   const mstEdges = [];
+
+//   for (const [u, v, weight] of edges) {
+//     if (dsu.union(u, v)) {
+//       mstCost += weight;
+
+//       mstEdges.push([u, v, weight]);
+//     }
+//   }
+
+//   return {
+//     mstCost,
+//     mstEdges,
+//   };
+// }
+// const edges = [
+//   [0, 1, 10],
+//   [0, 2, 6],
+//   [0, 3, 5],
+//   [1, 3, 15],
+//   [2, 3, 4],
+// ];
+
+// console.log(kruskal(4, edges));
+
+//                                                        
