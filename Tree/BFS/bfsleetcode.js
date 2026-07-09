@@ -1146,7 +1146,7 @@
 
 // console.log(findBottomLeftValue(root));
 
-// LeetCode Problem : 958 : Check Completeness of a Binary Tree 
+// LeetCode Problem : 958 : Check Completeness of a Binary Tree
 
 // class Node{
 //     constructor(value){
@@ -1188,3 +1188,151 @@
 
 // console.log(isCompleteTree(root));
 
+// LeetCode Problem : 617 : Merge Two Binary Tree............
+
+// class Node1 {
+//   constructor(value) {
+//     this.value = this.value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+// class Node2 {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+// const root1 = new Node1(1);
+// root1.left = new Node1(3);
+// root1.right = new Node(2);
+// root1.left.left = new Node(5);
+
+// const root2 = new Node2(2);
+// root2.left = new Node(1);
+// root2.right = new Node(3);
+// root2.left.right = new Node(4);
+// root2.right.right = new Node(7);
+
+// function mergeTrees(root1, root2) {
+//   // Base case: if both nodes are null, return null
+//   if (root1 === null && root2 === null) {
+//     return null;
+//   }
+
+//   // Base case: if one node is null, return the other
+//   if (root1 === null) {
+//     return root2;
+//   }
+//   if (root2 === null) {
+//     return root1;
+//   }
+
+//   // Create a new node with the sum of both values
+//   const mergedNode = new TreeNode(root1.val + root2.val);
+
+//   // Recursively merge the left children
+//   mergedNode.left = mergeTrees(root1.left, root2.left);
+
+//   // Recursively merge the right children
+//   mergedNode.right = mergeTrees(root1.right, root2.right);
+
+//   // Return the merged tree
+//   return mergedNode;
+// }
+
+// console.log(mergeTrees(root1, root2));
+
+// LeetCode Problem : 515 : Find Largest Value in Each Tree Row
+
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+// const root = new Node(1);
+// root.left = new Node(3);
+// root.right = new Node(2);
+// root.left.left = new Node(5);
+// root.right.right = new Node(9);
+// root.left.right = new Node(3);
+
+// function largestValue(root) {
+//   // base case:
+//   if (root === null) return [];
+
+//   const result = [];
+//   const queue = [root];
+//   let front = 0;
+
+//   while (front < queue.length) {
+//     let levelSize = queue.length - front;
+//     let maxValue = -Infinity;
+
+//     for (let i = 0; i < levelSize; i++) {
+//       const node = queue[front++];
+
+//       if (node.value > maxValue) {
+//         maxValue = node.value;
+//       }
+
+//       if (node.left !== null) queue.push(node.left);
+//       if (node.right !== null) queue.push(node.right);
+//     }
+//     result.push(maxValue);
+//   }
+//   return result;
+// }
+// console.log(largestValue(root));
+
+// LeetCode Problem : 2415 : Reverse Odd Levels Of Binary Tree.....
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
+
+// const root = new Node(2);
+// root.left = new Node(3);
+// root.right = new Node(5);
+// root.left.left = new Node(8);
+// root.left.right = new Node(13);
+// root.right.left = new Node(21);
+// root.right.right = new Node(34);
+
+// function reverseOddLevels(root) {
+//   // base case :
+//   if (root === null) return;
+//   const result = [];
+//   const queue = [root];
+//   let front = 0;
+//   let level = 0;
+
+//   while (front < queue.length) {
+//     let levelSize = queue.length - front;
+//     let currentLevelNodes = [];
+//     for (let i = 0; i < levelSize; i++) {
+//       const node = queue[front++];
+//       currentLevelNodes.push(node.value);
+//       if (node.left !== null) queue.push(node.left);
+//       if (node.right !== null) queue.push(node.right);
+//     }
+
+//     if (level % 2 === 1) {
+//       const values = currentLevelNodes.map((node) => node.value);
+//       values.reverse();
+
+//       for (let i = 0; i < currentLevelNodes.length; i++) {
+//         currentLevelNodes[i].value = values[i];
+//       }
+//     }
+//     level++;
+//   }
+//   return root;
+// }
+// console.log(reverseOddLevels(root));

@@ -832,4 +832,227 @@
 
 // console.log(kruskal(4, edges));
 
-//                                                        
+// Tarjan's Algorithm..........................
+
+// this algorithm find you a discovery time in any graph , and it's help you to detect a bridge in any graph
+
+// function criticalConnections(n, connections) {
+//   const graph = Array.from({ length: n }, () => []);
+//   for (let [u, v] of connections) {
+//     graph[u].push(v);
+//     graph[v].push(u);
+//   }
+
+//   const disc = new Array(n).fill(0);
+//   const low = new Array(n).fill(0);
+//   const result = [];
+//   let time = 0;
+
+//   function dfs(u, parent) {
+//     disc[u] = low[u] = ++time;
+
+//     for (let v of graph[u]) {
+//       if (v === parent) continue;
+
+//       if (disc[v] === 0) {
+//         dfs(v, u);
+//         low[u] = Math.min(low[u], low[v]);
+
+//         if (low[v] > disc[u]) {
+//           result.push([u, v]);
+//         }
+//       } else {
+//         low[u] = Math.min(low[u], disc[v]);
+//       }
+//     }
+//   }
+//   for (let i = 0; i < n; i++) {
+//     if (disc[i] === 0) dfs(i, -1);
+//   }
+//   return result;
+// }
+
+// const connections = [
+//   [0, 1],
+//   [1, 2],
+//   [2, 0],
+//   [1, 3],
+// ];
+
+// console.log(criticalConnections(4, connections));
+
+// Articulation Point in Graph...........................
+
+// class Graph {
+//     constructor(n) {
+//         this.n = n;
+//         this.graph = Array.from({ length: n }, () => []);
+//         this.time = 0;
+//     }
+//     addEdge(u, v) {
+//         this.graph[u].push(v);
+//         this.graph[v].push(u);
+//     }
+//     articulationPoints() {
+//         const visited = new Array(this.n).fill(false);
+//         const disc = new Array(this.n).fill(-1);
+//         const low = new Array(this.n).fill(-1);
+//         const parent = new Array(this.n).fill(-1);
+//         const result = [];
+//         const dfs = (u) => {
+//             visited[u] = true;
+//             disc[u] = low[u] = this.time++;
+//             let children = 0;
+//             for (const v of this.graph[u]) {
+//                 if (!visited[v]) {
+//                     children++;
+//                     parent[v] = u;
+//                     dfs(v);
+//                     low[u] = Math.min(low[u], low[v]);
+//                     if (parent[u] === -1 && children > 1) {
+//                         result.push(u);
+//                     }
+//                     if (
+//                         parent[u] !== -1 &&
+//                         low[v] >= disc[u]
+//                     ) {
+//                         result.push(u);
+//                     }
+//                 }
+//                 else if (v !== parent[u]) {
+//                     low[u] = Math.min(low[u], disc[v]);
+//                 }
+//             }
+//         };
+//         for (let i = 0; i < this.n; i++) {
+//             if (!visited[i]) {
+//                 dfs(i);
+//             }
+
+//         }
+
+//         return [...new Set(result)];
+//     }
+// }
+
+// const g = new Graph(5);
+
+// g.addEdge(0,1);
+// g.addEdge(1,2);
+// g.addEdge(2,0);
+
+// g.addEdge(1,3);
+// g.addEdge(3,4);
+
+// console.log(g.articulationPoints());
+
+// Strongly Connected Components - Kosaraju's Algorithm.....
+
+// The Secret Behind Kosaraju
+// Kosaraju uses three major steps.
+// 1. DFS
+// 2. Reverse Graph
+// 3. DFS Again
+
+// Entire Algorithm.......
+
+// 1. Perform DFS.
+// 2. Push nodes into stack after DFS finishes.
+// 3. Reverse every edge.
+// 4. Clear visited array.
+// 5. Pop nodes one by one.
+// 6. Run DFS on reversed graph.
+// 7. Every DFS gives one SCC.
+
+// function kosaraju(V, edges) {
+//   const graph = Array.from({ length: V }, () => []);
+//   for (const [u, v] of edges) {
+//     graph[u].push(v);
+//   }
+//   const visited = new Array(V).fill(false);
+//   const stack = [];
+
+//   function dfs(node) {
+//     visited[node] = true;
+
+//     for (const next of graph[node]) {
+//       if (!visited[next]) {
+//         dfs(next);
+//       }
+//     }
+//     stack.push(node);
+//   }
+
+//   for (let i = 0; i < V; i++) {
+//     if (!visited[i]) {
+//       dfs(i);
+//     }
+//   }
+//   // reverse graph
+//   const reverse = Array.from({ length: V }, () => []);
+//   for (const [u, v] of edges) {
+//     reverse[v].push(u);
+//   }
+//   visited.fill(false);
+
+//   // reverse DFS
+//   function reverseDFS(node, component) {
+//     visited[node] = true;
+//     component.push(node);
+//     for (const next of reverse[node]) {
+//       if (!visited[next]) {
+//         reverseDFS(next, component);
+//       }
+//     }
+//   }
+//   // Process Stack
+//   const SCCs = [];
+//   while (stack.length > 0) {
+//     const node = stack.pop();
+//     if (!visited[node]) {
+//       const component = [];
+//       reverseDFS(node, component);
+//       SCCs.push(component);
+//     }
+//   }
+//   return SCCs;
+// }
+
+// let V = 5;
+// let edges = [
+//   [0, 1],
+//   [1, 2],
+//   [2, 0],
+//   [1, 3],
+//   [3, 4],
+// ];
+
+// console.log(kosaraju(V, edges));
+
+// Floyd Warshall Algorithm......................
+
+// function floydWarshall(graph) {
+//   const n = graph.length;
+//   const dist = graph.map((row) => [...row]);
+
+//   for (let k = 0; k < n; k++) {
+//     for (let i = 0; i < n; i++) {
+//       for (let j = 0; j < n; j++) {
+//         if (dist[i][k] + dist[k][j] < dist[i][j]) {
+//           dist[i][j] = dist[i][k] + dist[k][j];
+//         }
+//       }
+//     }
+//   }
+//   return dist;
+// }
+
+// const INF = Infinity;
+
+// const graph = [
+//   [0, 3, 10],
+//   [INF, 0, 2],
+//   [INF, INF, 0],
+// ];
+
+// console.log(floydWarshall(graph));

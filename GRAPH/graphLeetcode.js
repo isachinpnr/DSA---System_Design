@@ -486,7 +486,7 @@
 // let succProb = [0.5, 0.5, 0.2];
 // console.log(maxProbability(3, edges, succProb, 0, 2));
 
-// LeetCode Problem : 787 : Cheapest Flights Within K Stops
+// LeetCode Problem : 787 : Cheapest Flights Within K Stops........
 
 // function findCheapestPrice(n, flights, src, dst, k) {
 //   let dist = new Array(n).fill(Infinity);
@@ -568,3 +568,568 @@
 //   [0, 0, 1],
 // ];
 // console.log(findCircleNum(isConnected));
+
+//  LeetCode Problem : Min Cost to Connect all Points............
+// function minCostConnectPoints(points) {
+//     const n = points.length;
+//     if (n <= 1) return 0;
+
+//     // Track which points are in MST
+//     const visited = new Array(n).fill(false);
+
+//     // Minimum cost to connect each point to the MST
+//     const minCost = new Array(n).fill(Infinity);
+//     minCost[0] = 0;
+
+//     let totalCost = 0;
+
+//     for (let i = 0; i < n; i++) {
+//         // Find the unvisited point with minimum cost
+//         let u = -1;
+//         for (let j = 0; j < n; j++) {
+//             if (!visited[j] && (u === -1 || minCost[j] < minCost[u])) {
+//                 u = j;
+//             }
+//         }
+
+//         // Add this point to MST
+//         visited[u] = true;
+//         totalCost += minCost[u];
+
+//         // Update costs for remaining points
+//         for (let v = 0; v < n; v++) {
+//             if (!visited[v]) {
+//                 const cost = Math.abs(points[u][0] - points[v][0]) +
+//                            Math.abs(points[u][1] - points[v][1]);
+//                 if (cost < minCost[v]) {
+//                     minCost[v] = cost;
+//                 }
+//             }
+//         }
+//     }
+
+//     return totalCost;
+// }
+
+// LeetCode Problem : 1192 : Critical Connection in a Network....
+
+// function criticalConnections(n, connections) {
+//   const graph = Array.from({ length: n }, () => []);
+//   for (let [u, v] of connections) {
+//     graph[u].push(v);
+//     graph[v].push(u);
+//   }
+
+//   const disc = new Array(n).fill(0);
+//   const low = new Array(n).fill(0);
+//   const result = [];
+//   let time = 0;
+
+//   function dfs(u, parent) {
+//     disc[u] = low[u] = ++time;
+
+//     for (let v of graph[u]) {
+//       if (v === parent) continue;
+
+//       if (disc[v] === 0) {
+//         dfs(v, u);
+//         low[u] = Math.min(low[u], low[v]);
+
+//         if (low[v] > disc[u]) {
+//           result.push([u, v]);
+//         }
+//       } else {
+//         low[u] = Math.min(low[u], disc[v]);
+//       }
+//     }
+//   }
+//   for (let i = 0; i < n; i++) {
+//     if (disc[i] === 0) dfs(i, -1);
+//   }
+//   return result;
+// }
+
+// LeetCode Problem : 133 : Clone Graph -
+
+// class Node {
+//     constructor(val, neighbors) {
+//         this.val = val === undefined ? 0 : val;
+//         this.neighbors = neighbors === undefined ? [] : neighbors;
+//     }
+// }
+
+// function cloneGraph(node) {
+//   let visited = {};
+
+//   function dfs(node) {
+//     // base case :
+//     if (!node) return node;
+
+//     if (visited[node.val]) return visited[node.val];
+
+//     let root = new Node(node.val);
+//     visited[node.val] = root;
+
+//     // recurrence relation
+//     for (let neighbor of node.neighbors) {
+//       root.neighbors.push(dfs(neighbor));
+//     }
+//     return root;
+//   }
+//   return dfs(node);
+// }
+
+// let adjList = [
+//   [2, 4],
+//   [1, 3],
+//   [2, 4],
+//   [1, 3],
+// ];
+// console.log(cloneGraph(node));
+
+// LeetCode Problem : 785 : Is Graph Bipartite?
+
+// function isBipartite(graph) {
+//   const n = graph.length;
+//   const color = new Array(n).fill(-1);
+
+//   for (let i = 0; i < n; i++) {
+//     if (color[i] === -1) {
+//       const queue = [i];
+//       color[i] = 0;
+
+//       while (queue.length > 0) {
+//         const node = queue.shift();
+//         const currentColor = color[node];
+
+//         for (let neighbor of graph[node]) {
+//           if (color[neighbor] === -1) {
+//             color[neighbor] = 1 - currentColor;
+//             queue.push(neighbor);
+//           } else if (color[neighbor] === currentColor) {
+//             return false;
+//           }
+//         }
+//       }
+//     }
+//   }
+//   return true;
+// }
+
+// let graph = [[1], [0], [3], [2]]
+// console.log(isBipartite(graph));
+
+// LeetCode Problem : 752 : Open The Lock....................
+
+// function openLock(deadends, target) {
+//   // Convert deadends array to a Set for O(1) lookups
+//   const deadSet = new Set(deadends);
+
+//   // If start state is a deadend, impossible
+//   if (deadSet.has("0000")) return -1;
+
+//   // If target is already the start, 0 moves needed
+//   if (target === "0000") return 0;
+
+//   // BFS setup
+//   const queue = ["0000"];
+//   const visited = new Set(["0000"]);
+//   let moves = 0;
+
+//   while (queue.length > 0) {
+//     const levelSize = queue.length;
+
+//     // Process all nodes at current level
+//     for (let i = 0; i < levelSize; i++) {
+//       const current = queue.shift();
+
+//       // Generate all 8 possible next states
+//       const neighbors = getNeighbors(current);
+
+//       for (let neighbor of neighbors) {
+//         // Skip if deadend or already visited
+//         if (deadSet.has(neighbor) || visited.has(neighbor)) {
+//           continue;
+//         }
+
+//         // Check if we reached the target
+//         if (neighbor === target) {
+//           return moves + 1;
+//         }
+
+//         // Add to queue for further exploration
+//         visited.add(neighbor);
+//         queue.push(neighbor);
+//       }
+//     }
+
+//     moves++;
+//   }
+
+//   // Queue exhausted without finding target
+//   return -1;
+// }
+
+// // Helper function to generate all 8 neighbors
+// function getNeighbors(state) {
+//   const neighbors = [];
+//   const digits = state.split("");
+
+//   for (let i = 0; i < 4; i++) {
+//     // Turn wheel i UP (increase by 1, wrap 9→0)
+//     let up = [...digits];
+//     up[i] = digits[i] === "9" ? "0" : String(Number(digits[i]) + 1);
+//     neighbors.push(up.join(""));
+
+//     // Turn wheel i DOWN (decrease by 1, wrap 0→9)
+//     let down = [...digits];
+//     down[i] = digits[i] === "0" ? "9" : String(Number(digits[i]) - 1);
+//     neighbors.push(down.join(""));
+//   }
+
+//   return neighbors;
+// }
+
+// LeetCode Problem : 127 : Word Ladder.....
+
+// function ladderLength(beginWord, endWord, wordList) {
+//   const wordSet = new Set(wordList);
+
+//   // If endWord is not in the dictionary, impossible
+//   if (!wordSet.has(endWord)) return 0;
+
+//   // BFS setup
+//   const queue = [beginWord];
+//   const visited = new Set([beginWord]);
+//   let level = 1; // Start with 1 because beginWord counts
+
+//   while (queue.length > 0) {
+//     const levelSize = queue.length;
+
+//     // Process all words at current level
+//     for (let i = 0; i < levelSize; i++) {
+//       const currentWord = queue.shift();
+
+//       // Generate all possible one-letter variations
+//       const neighbors = getNeighbors(currentWord, wordSet);
+
+//       for (let neighbor of neighbors) {
+//         // If we reached the target
+//         if (neighbor === endWord) {
+//           return level + 1;
+//         }
+
+//         // If not visited, add to queue
+//         if (!visited.has(neighbor)) {
+//           visited.add(neighbor);
+//           queue.push(neighbor);
+//         }
+//       }
+//     }
+
+//     level++;
+//   }
+
+//   // No transformation sequence found
+//   return 0;
+// }
+
+// function getNeighbors(word, wordSet) {
+//   const neighbors = [];
+//   const chars = word.split("");
+
+//   for (let i = 0; i < word.length; i++) {
+//     const originalChar = chars[i];
+
+//     // Try all 26 lowercase letters
+//     for (let code = 97; code <= 122; code++) {
+//       const newChar = String.fromCharCode(code);
+
+//       // Skip if it's the same character
+//       if (newChar === originalChar) continue;
+
+//       // Replace character at position i
+//       chars[i] = newChar;
+//       const newWord = chars.join("");
+
+//       // Check if this new word exists in dictionary
+//       if (wordSet.has(newWord)) {
+//         neighbors.push(newWord);
+//         // Remove from set to prevent revisiting (optimization)
+//         wordSet.delete(newWord);
+//       }
+
+//       // Restore original character
+//       chars[i] = originalChar;
+//     }
+//   }
+
+//   return neighbors;
+// }
+
+// LeetCode Problem : 1631 : Path With Minimum Effort
+
+// function minimumEffortPath(heights) {
+//   const rows = heights.length;
+//   const cols = heights[0].length;
+
+//   // If only one cell, no effort needed
+//   if (rows === 1 && cols === 1) return 0;
+
+//   // Binary search range
+//   let left = 0;
+//   let right = 1000000; // Maximum possible height difference
+
+//   while (left < right) {
+//     const mid = Math.floor((left + right) / 2);
+
+//     if (canReach(heights, mid)) {
+//       right = mid; // Try smaller effort
+//     } else {
+//       left = mid + 1; // Need more effort
+//     }
+//   }
+
+//   return left;
+// }
+
+// function canReach(heights, maxEffort) {
+//   const rows = heights.length;
+//   const cols = heights[0].length;
+//   const visited = Array.from({ length: rows }, () => Array(cols).fill(false));
+//   const queue = [[0, 0]];
+//   visited[0][0] = true;
+
+//   const directions = [
+//     [-1, 0],
+//     [1, 0],
+//     [0, -1],
+//     [0, 1],
+//   ];
+
+//   while (queue.length > 0) {
+//     const [row, col] = queue.shift();
+
+//     // If we reached the target
+//     if (row === rows - 1 && col === cols - 1) {
+//       return true;
+//     }
+
+//     // Try all 4 directions
+//     for (let [dr, dc] of directions) {
+//       const newRow = row + dr;
+//       const newCol = col + dc;
+
+//       // Check if within bounds and not visited
+//       if (
+//         newRow >= 0 &&
+//         newRow < rows &&
+//         newCol >= 0 &&
+//         newCol < cols &&
+//         !visited[newRow][newCol]
+//       ) {
+//         const diff = Math.abs(heights[row][col] - heights[newRow][newCol]);
+
+//         // Only move if difference is within allowed effort
+//         if (diff <= maxEffort) {
+//           visited[newRow][newCol] = true;
+//           queue.push([newRow, newCol]);
+//         }
+//       }
+//     }
+//   }
+
+//   return false;
+// }
+
+// LeetCode Problem : 721 : Accounts Merge...............
+// function accountsMerge(accounts) {
+//   const n = accounts.length;
+//   const parent = Array.from({ length: n }, (_, i) => i);
+
+//   // Find function with path compression
+//   function find(x) {
+//     if (parent[x] !== x) {
+//       parent[x] = find(parent[x]);
+//     }
+//     return parent[x];
+//   }
+
+//   // Union function
+//   function union(x, y) {
+//     const rootX = find(x);
+//     const rootY = find(y);
+//     if (rootX !== rootY) {
+//       parent[rootY] = rootX;
+//     }
+//   }
+
+//   // Map email to account index
+//   const emailToAccount = new Map();
+
+//   // Step 1: Build connections by finding shared emails
+//   for (let i = 0; i < n; i++) {
+//     for (let j = 1; j < accounts[i].length; j++) {
+//       const email = accounts[i][j];
+
+//       if (!emailToAccount.has(email)) {
+//         emailToAccount.set(email, i);
+//       } else {
+//         const existingAccount = emailToAccount.get(email);
+//         union(i, existingAccount);
+//       }
+//     }
+//   }
+
+//   // Step 2: Group emails by root account
+//   const groupedEmails = new Map();
+//   for (let [email, accountIndex] of emailToAccount) {
+//     const root = find(accountIndex);
+//     if (!groupedEmails.has(root)) {
+//       groupedEmails.set(root, []);
+//     }
+//     groupedEmails.get(root).push(email);
+//   }
+
+//   // Step 3: Build the result
+//   const result = [];
+//   for (let [root, emails] of groupedEmails) {
+//     emails.sort();
+//     const name = accounts[root][0];
+//     result.push([name, ...emails]);
+//   }
+
+//   return result;
+// }
+// const accounts = [
+//   ["John", "johnsmith@mail.com", "john_newyork@mail.com"],
+//   ["John", "johnsmith@mail.com", "john00@mail.com"],
+//   ["Mary", "mary@mail.com"],
+//   ["John", "johnnybravo@mail.com"],
+// ];
+// console.log(accountsMerge(accounts));
+
+// LeetCode Problem : 947 : Most Stones Removed with Same Row or Column....
+
+// function removeStones(stones) {
+//   const n = stones.length;
+//   const parent = {};
+//   const rank = {};
+
+//   // Find function with path compression
+//   function find(x) {
+//     if (parent[x] !== x) {
+//       parent[x] = find(parent[x]);
+//     }
+//     return parent[x];
+//   }
+
+//   // Union function with union by rank
+//   function union(x, y) {
+//     const rootX = find(x);
+//     const rootY = find(y);
+//     if (rootX === rootY) return;
+
+//     if (rank[rootX] < rank[rootY]) {
+//       parent[rootX] = rootY;
+//     } else if (rank[rootX] > rank[rootY]) {
+//       parent[rootY] = rootX;
+//     } else {
+//       parent[rootY] = rootX;
+//       rank[rootX]++;
+//     }
+//   }
+
+//   // Step 1: Union stones that share same row or column
+//   for (let [x, y] of stones) {
+//     const row = "r" + x; // Prefix to distinguish row from column
+//     const col = "c" + y; // Prefix to distinguish column from row
+
+//     if (!(row in parent)) {
+//       parent[row] = row;
+//       rank[row] = 0;
+//     }
+//     if (!(col in parent)) {
+//       parent[col] = col;
+//       rank[col] = 0;
+//     }
+
+//     union(row, col);
+//   }
+
+//   // Step 2: Count number of connected components
+//   const components = new Set();
+//   for (let [x, y] of stones) {
+//     const row = "r" + x;
+//     const root = find(row);
+//     components.add(root);
+//   }
+
+//   // Step 3: Maximum stones removable = total stones - number of components
+//   return n - components.size;
+// }
+
+// LeetCode Problem : 130 : Surrounded Regions............
+
+// var solve = function(board) {
+//     const m = board.length;
+//     const n = board[0].length;
+    
+//     // Direction vectors: up, down, left, right
+//     const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+    
+//     // DFS to mark all connected 'O's from a starting cell
+//     function dfs(i, j) {
+//         // Check if out of bounds
+//         if (i < 0 || i >= m || j < 0 || j >= n) return;
+        
+//         // Check if current cell is not 'O' or already marked
+//         if (board[i][j] !== 'O') return;
+        
+//         // Mark this cell as safe (connected to edge)
+//         board[i][j] = 'S'; // 'S' means Safe
+        
+//         // Explore all 4 directions
+//         for (let [di, dj] of directions) {
+//             dfs(i + di, j + dj);
+//         }
+//     }
+    
+//     // Step 1: Mark all 'O's connected to border as 'S' (Safe)
+//     // Check top and bottom rows
+//     for (let j = 0; j < n; j++) {
+//         if (board[0][j] === 'O') dfs(0, j);        // Top row
+//         if (board[m - 1][j] === 'O') dfs(m - 1, j); // Bottom row
+//     }
+    
+//     // Check left and right columns
+//     for (let i = 0; i < m; i++) {
+//         if (board[i][0] === 'O') dfs(i, 0);        // Left column
+//         if (board[i][n - 1] === 'O') dfs(i, n - 1); // Right column
+//     }
+    
+//     // Step 2: Convert remaining 'O's to 'X' and 'S' back to 'O'
+//     for (let i = 0; i < m; i++) {
+//         for (let j = 0; j < n; j++) {
+//             if (board[i][j] === 'O') {
+//                 board[i][j] = 'X'; // Surrounded 'O' → capture
+//             } else if (board[i][j] === 'S') {
+//                 board[i][j] = 'O'; // Safe 'O' → restore
+//             }
+//         }
+//     }
+// };
+
+// 
+
+
+
+
+
+
+
+
+
+
+
+

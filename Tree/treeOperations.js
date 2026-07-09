@@ -376,3 +376,10 @@
 // console.log(tree);
 // // pretty print function
 // prettyPrint(tree.root);
+
+// Segment Tree........
+
+// this is a remaining topic in here
+// 
+
+
