@@ -1074,40 +1074,40 @@
 // var solve = function(board) {
 //     const m = board.length;
 //     const n = board[0].length;
-    
+
 //     // Direction vectors: up, down, left, right
 //     const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
-    
+
 //     // DFS to mark all connected 'O's from a starting cell
 //     function dfs(i, j) {
 //         // Check if out of bounds
 //         if (i < 0 || i >= m || j < 0 || j >= n) return;
-        
+
 //         // Check if current cell is not 'O' or already marked
 //         if (board[i][j] !== 'O') return;
-        
+
 //         // Mark this cell as safe (connected to edge)
 //         board[i][j] = 'S'; // 'S' means Safe
-        
+
 //         // Explore all 4 directions
 //         for (let [di, dj] of directions) {
 //             dfs(i + di, j + dj);
 //         }
 //     }
-    
+
 //     // Step 1: Mark all 'O's connected to border as 'S' (Safe)
 //     // Check top and bottom rows
 //     for (let j = 0; j < n; j++) {
 //         if (board[0][j] === 'O') dfs(0, j);        // Top row
 //         if (board[m - 1][j] === 'O') dfs(m - 1, j); // Bottom row
 //     }
-    
+
 //     // Check left and right columns
 //     for (let i = 0; i < m; i++) {
 //         if (board[i][0] === 'O') dfs(i, 0);        // Left column
 //         if (board[i][n - 1] === 'O') dfs(i, n - 1); // Right column
 //     }
-    
+
 //     // Step 2: Convert remaining 'O's to 'X' and 'S' back to 'O'
 //     for (let i = 0; i < m; i++) {
 //         for (let j = 0; j < n; j++) {
@@ -1120,16 +1120,205 @@
 //     }
 // };
 
-// 
+// LeetCode Problem : 417 : Pacific Atlantic Water Flow......
 
+// function pacificAtlantic(heights) {
+//     const m = heights.length;
+//     const n = heights[0].length;
 
+//     // Initialize visited matrices for both oceans
+//     const pacific = Array.from({ length: m }, () => Array(n).fill(false));
+//     const atlantic = Array.from({ length: m }, () => Array(n).fill(false));
 
+//     // Direction vectors: up, down, left, right
+//     const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
 
+//     // DFS function to explore cells reachable from ocean
+//     function dfs(i, j, ocean, prevHeight) {
+//         // Check if out of bounds
+//         if (i < 0 || i >= m || j < 0 || j >= n) return;
 
+//         // Check if already visited or can't flow
+//         if (ocean[i][j]) return;
+//         if (heights[i][j] < prevHeight) return;
 
+//         // Mark current cell as reachable
+//         ocean[i][j] = true;
 
+//         // Explore all 4 directions
+//         for (let [di, dj] of directions) {
+//             dfs(i + di, j + dj, ocean, heights[i][j]);
+//         }
+//     }
 
+//     // Start DFS from Pacific Ocean edges (top row and left column)
+//     for (let i = 0; i < m; i++) {
+//         dfs(i, 0, pacific, heights[i][0]);      // Left column
+//         dfs(i, n - 1, atlantic, heights[i][n - 1]); // Right column
+//     }
+//     for (let j = 0; j < n; j++) {
+//         dfs(0, j, pacific, heights[0][j]);      // Top row
+//         dfs(m - 1, j, atlantic, heights[m - 1][j]); // Bottom row
+//     }
 
+//     // Find cells that can reach both oceans
+//     const result = [];
+//     for (let i = 0; i < m; i++) {
+//         for (let j = 0; j < n; j++) {
+//             if (pacific[i][j] && atlantic[i][j]) {
+//                 result.push([i, j]);
+//             }
+//         }
+//     }
 
+//     return result;
+// };
 
+// LeetCode Problem : 542 : 01 Matrix.........
+
+// function updateMatrix(mat) {
+//   const m = mat.length;
+//   const n = mat[0].length;
+
+//   // Direction vectors: up, down, left, right
+//   const directions = [
+//     [-1, 0],
+//     [1, 0],
+//     [0, -1],
+//     [0, 1],
+//   ];
+
+//   // Initialize result matrix and queue
+//   const dist = Array.from({ length: m }, () => Array(n).fill(0));
+//   const queue = [];
+
+//   // Add all zero cells to queue
+//   for (let i = 0; i < m; i++) {
+//     for (let j = 0; j < n; j++) {
+//       if (mat[i][j] === 0) {
+//         queue.push([i, j]);
+//       } else {
+//         dist[i][j] = Infinity; // Mark ones as unvisited
+//       }
+//     }
+//   }
+
+//   // BFS from all zeros simultaneously
+//   while (queue.length > 0) {
+//     const [i, j] = queue.shift();
+
+//     for (let [di, dj] of directions) {
+//       const newI = i + di;
+//       const newJ = j + dj;
+
+//       // Check bounds and if unvisited
+//       if (
+//         newI >= 0 &&
+//         newI < m &&
+//         newJ >= 0 &&
+//         newJ < n &&
+//         dist[newI][newJ] === Infinity
+//       ) {
+//         dist[newI][newJ] = dist[i][j] + 1;
+//         queue.push([newI, newJ]);
+//       }
+//     }
+//   }
+
+//   return dist;
+// }
+
+// LeetCode Problem : 329 : Longest Increasing Path in Matrix
+
+// function longestIncreasingPath(matrix) {
+//   const m = matrix.length;
+//   const n = matrix[0].length;
+
+//   // Memoization cache
+//   const memo = Array.from({ length: m }, () => Array(n).fill(0));
+
+//   // Direction vectors: up, down, left, right
+//   const directions = [
+//     [-1, 0],
+//     [1, 0],
+//     [0, -1],
+//     [0, 1],
+//   ];
+
+//   // DFS function to find longest path starting from cell (i, j)
+//   function dfs(i, j) {
+//     // If already computed, return cached value
+//     if (memo[i][j] !== 0) return memo[i][j];
+
+//     // At minimum, the path length is 1 (the cell itself)
+//     let maxLength = 1;
+
+//     // Explore all 4 directions
+//     for (let [di, dj] of directions) {
+//       const newI = i + di;
+//       const newJ = j + dj;
+
+//       // Check bounds and strictly increasing condition
+//       if (
+//         newI >= 0 &&
+//         newI < m &&
+//         newJ >= 0 &&
+//         newJ < n &&
+//         matrix[newI][newJ] > matrix[i][j]
+//       ) {
+//         const length = 1 + dfs(newI, newJ);
+//         maxLength = Math.max(maxLength, length);
+//       }
+//     }
+
+//     // Cache the result
+//     memo[i][j] = maxLength;
+//     return maxLength;
+//   }
+
+//   // Try starting from every cell
+//   let result = 0;
+//   for (let i = 0; i < m; i++) {
+//     for (let j = 0; j < n; j++) {
+//       result = Math.max(result, dfs(i, j));
+//     }
+//   }
+
+//   return result;
+// }
+
+// LeetCode Problem : 332 : Reconstruct Itinerary.....
+
+// function findItinerary(tickets) {
+//   // Build adjacency list with sorted destinations
+//   const graph = {};
+
+//   // Add all tickets to graph
+//   for (let [from, to] of tickets) {
+//     if (!graph[from]) {
+//       graph[from] = [];
+//     }
+//     graph[from].push(to);
+//   }
+
+//   // Sort destinations in reverse order (we'll pop from end)
+//   for (let from in graph) {
+//     graph[from].sort().reverse();
+//   }
+
+//   const result = [];
+
+//   // Hierholzer's algorithm for Eulerian path
+//   function dfs(airport) {
+//     const destinations = graph[airport];
+//     while (destinations && destinations.length > 0) {
+//       const next = destinations.pop();
+//       dfs(next);
+//     }
+//     result.push(airport);
+//   }
+
+//   dfs("JFK");
+//   return result.reverse();
+// }
 
