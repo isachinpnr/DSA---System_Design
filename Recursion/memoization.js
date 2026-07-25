@@ -23,7 +23,7 @@
 
 // This problem is called:
 
-// Overlapping Subproblems
+// Overlapping SubProblems
 
 // 🔴 3. Key Idea of Memoization
 // If result is already calculated → reuse it
@@ -65,22 +65,15 @@
 
 // Use memoization when:
 
-// 1️⃣ Overlapping Subproblems
-
+// 1️⃣ Overlapping SubProblems
 // Same function calls repeat.
-
 // 2️⃣ Recursive Solution Exists
-
-// Problem can be broken into smaller subproblems.
-
+// Problem can be broken into smaller subProblems.
 // 3️⃣ Optimization Needed
-
 // Brute-force recursion is slow.
-
 // 🔴 9. How to Identify Memoization Problem
 
 // Ask:
-
 // “Is the same input solved multiple times?”
 
 // If YES → use memoization.
@@ -103,13 +96,13 @@
 //     return memo[n];
 // }
 // 🔴 12. Important Concepts
-// ✔ Overlapping Subproblems
+// ✔ Overlapping SubProblems
 
 // Same problem solved multiple times
 
 // ✔ Optimal Substructure
 
-// Problem can be built using smaller subproblems
+// Problem can be built using smaller subProblems
 
 // 🔴 13. Memoization vs Normal Recursion
 // Feature	Recursion	Memoization
@@ -273,4 +266,92 @@
 //   }
 //   return [...sortedArr, ...left, ...right];
 // }
+
+
+// Memoization Flow.....
+// Function Called
+// ↓
+// Already in cache?
+// ↓
+// YES
+// ↓
+// Return cache value
+// ----------------------
+// NO
+// ↓
+// Calculate answer
+// ↓
+// Store answer in cache
+// ↓
+// Return answer
+
+// imp problem to understand memoization + dp.....
+
+// function canSum(target , numbers , memo = {}){
+//     if(target in memo) return memo[target];
+//     // base case
+//    if(target === 0) return true;
+//    if(target < 0) return false;
+    
+//     for(let num of numbers){
+//         let remainder = target - num;
+//         if(canSum(remainder , numbers , memo)){
+//             memo[target] = true;
+//             return true;
+//         }
+//     }
+//     memo[target] = false;
+//     return false;
+// }
+// let n = [2,3];
+// let target = 7;
+// console.log(canSum(target , n));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

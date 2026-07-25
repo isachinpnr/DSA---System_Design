@@ -21,27 +21,23 @@
 // }
 
 // Important idea:
-// Recursion solves a problem by breaking it into smaller identical subproblems.
+// Recursion solves a problem by breaking it into smaller identical SubProblems.
 
 // 2. The 3 Golden Rules of Recursion
 
 // Rule 1 — Base Condition is Mandatory
 // Without a base condition recursion will run infinite times → Stack Overflow
+// Example: if(n === 0) return;
 
-// Example:
-// if(n === 0) return;
 // Rule 2 — Work must move toward Base Case
-
 // Each recursive call must make the problem smaller
-// Example
-// n → n-1 → n-2 → n-3
-// Rule 3 — Trust the Recursive Call (This is the most important mindset)
+// Example :  n → n-1 → n-2 → n-3
 
+// Rule 3 — Trust the Recursive Call (This is the most important mindset)
 // When writing recursion, assume the recursive call already works correctly.
 // You only focus on the current step.
 
 // 3. Understanding the Call Stack
-
 // Recursion internally uses the Call Stack.
 
 // Example:

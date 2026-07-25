@@ -765,14 +765,25 @@
 // //check cycle ?
 // console.log(list.isCycle());
 
-// // find meeting point 
+// // find meeting point
 // console.log(`meeting Point : ${list.findPoint()}`);
 
 // // remove meeting point
 // console.log(list.removeCycle());
 
-
 // console.log(`current size ${list.size}`);
 // // console.log(list);
 
+// function deletionEl(nums, idx) {
+//   // edge case...
+//   if (idx < 0 || idx >= nums.length) return "Invalid Index";
+//   for (let i = idx; i < nums.length -1; i++) {
+//     nums[i] = nums[i + 1];
+//   }
+//   nums.length -= 1;
+//   return nums;
+// }
 
+// let nums = [10, 20, 40, 50, 60];
+// let idx = 5;
+// console.log(deletionEl(nums, idx));

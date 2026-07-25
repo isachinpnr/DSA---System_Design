@@ -20,7 +20,8 @@
 
 // }
 
-// effeient way to write a bubble sort if you are think a loop can sort your array in early moments so you don't need to go through all the loops
+// effeient way to write a bubble sort if you are think a loop can 
+// sort your array in early moments so you don't need to go through all the loops
 
 // function bubbleSort1(arr) {
 //   let n = arr.length;
@@ -88,9 +89,9 @@
 
 // ###################################### 2. Selection Sort #########################################################
 
-// in a selection sort we pick a one element in left side , means assume this is a very small and large ( based on assending
-//         or desinding choice) and compare this element to another remaining elements , and repeat a process whenever all the small or larger number come to
-//         // one side of array )
+// in a selection sort we pick a one element in left side , means assume this is a very small and large 
+// ( based on ascending or descending choice) and compare this element to another remaining elements , 
+// and repeat a process whenever all the small or larger number come to one side of array )
 
 // ascending order .....
 

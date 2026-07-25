@@ -1,4 +1,4 @@
-// here i wrote a recursion related all the problem
+// here i wrote a recursion related all the problem... 
 
 // problem1 : print a value 1 to 10 or 10 to 1..................................
 
@@ -177,7 +177,7 @@
 //     result.push(arr[index]);
 //   }
 //   return removeDuplicates(arr, result, index + 1);
-
+// }
 //   // one liner solution...
 //   // return [...new Set(arr)];
 // }
@@ -198,4 +198,4 @@
 // let nums = [1, 2, 0, 4, 0, 7, 0, 3, 0, 9, 0];
 // console.log(move0(nums));
 
-// problem 
+// 

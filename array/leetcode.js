@@ -893,47 +893,47 @@
 
 // 18 . find a intersection of two List
 
-let findIntersection = (headA , headB) => {
-  // helper function to find a length; of both list
-  function getLength(node){
-    let len = 0;
-    while(node){
-      node = node.next;
-      len++;
-    }
-    return len;
-  }
+// let findIntersection = (headA , headB) => {
+//   // helper function to find a length; of both list
+//   function getLength(node){
+//     let len = 0;
+//     while(node){
+//       node = node.next;
+//       len++;
+//     }
+//     return len;
+//   }
 
-  //
-  let lenA = getLength(headA);
-  let lenB = getLength(headB);
+//   //
+//   let lenA = getLength(headA);
+//   let lenB = getLength(headB);
 
   // decrease a len of list who is big
 
-    while(lenA > lenB){
-      headA = headA.next;
-      lenA--
-    }
-    while(lenB > lenA){
-      headB = headB.next;
-      lenB--;
-    }
-    while(headA!== headB){
-      headA = headA.next;
-      headB = headB.next;
-    }
-    return headA;
-}
+//     while(lenA > lenB){
+//       headA = headA.next;
+//       lenA--
+//     }
+//     while(lenB > lenA){
+//       headB = headB.next;
+//       lenB--;
+//     }
+//     while(headA!== headB){
+//       headA = headA.next;
+//       headB = headB.next;
+//     }
+//     return headA;
+// }
 
 // more efficient way to approach this problem
 
-function getIntersectNode(headA , headB){
-    let pointerA = headA;
-    let pointerB = headB;
+// function getIntersectNode(headA , headB){
+//     let pointerA = headA;
+//     let pointerB = headB;
 
-    while(pointerA !== pointerB){
-      pointerA = pointerA === null ? headB : pointerA.next;
-      pointerB = pointerB === null ? headA : pointerB.next;
-    }
-    return pointerA;
-}
+//     while(pointerA !== pointerB){
+//       pointerA = pointerA === null ? headB : pointerA.next;
+//       pointerB = pointerB === null ? headA : pointerB.next;
+//     }
+//     return pointerA;
+// }
