@@ -31,10 +31,10 @@
 // }
 // console.log(set);
 
-// #Map:  map is also similier like an set to store a value inside in key & value pair but can store a duplicate
+// #Map:  map is also similar like an set to store a value inside in key & value pair but can store a duplicate
 // values but set can't do this.
 
-// let map = new Map();
+// let map = new Map(); 
 
 // map.set("name", "Sachin");
 // map.set("Age", 25);
@@ -132,7 +132,7 @@
             
 //             while(numSet.has(currentNum + 1)){
 //                 currentNum++;
-//                 currentCount++;
+//                 currentCount++;  
 //             }    
 //             longest = Math.max(longest , currentCount);
 //         }

@@ -86,7 +86,7 @@
 // push(78);
 // push(85);
 
-// dynamic input for stack
+// dynamic input for stack.....
 
 // let stack = [];
 // let currentSize = stack.length;
@@ -189,4 +189,6 @@
 
 // let string = '[{}}]';
 // console.log(isVailed(string));
+
+
 
