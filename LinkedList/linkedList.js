@@ -1,6 +1,7 @@
 // 📚 Linked List - Complete Guide for Your Notes
 // 📖 Standard Definition
-// A Linked List is a linear data structure where elements are stored in nodes, and each node points to the next node in the sequence. Unlike arrays, elements are not stored in contiguous memory locations.
+// A Linked List is a linear data structure where elements are stored in nodes, 
+// and each node points to the next node in the sequence. Unlike arrays, elements are not stored in contiguous memory locations.
 
 // 🎯 Key Components
 // Node Structure:
@@ -143,7 +144,7 @@ class LinkedList {
     if (newNode.next === null) {
       this.tail = newNode;
     }
-    this.size++;
+    this.size++; 
   }
 
   // remove node in first position (head removal)
@@ -175,7 +176,7 @@ class LinkedList {
     let removeNode;
 
     if (index === 0) {
-      removeNode = this.head.value;
+      removeNode = this.head;
       this.head = this.head.next;
 
       // if List Become Empty

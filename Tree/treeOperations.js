@@ -5,7 +5,8 @@
 // - Edge : The link between two nodes
 // - Leaf : a node with no child
 // - Height of a Node: The number of edges on the longest downward path from that node to a leaf.
-// (Deepest leaf from Root to external node / leaf node ) or which one longest depth top to bottom traverse is a height of any node
+// (Deepest leaf from Root to external node / leaf node ) or which one longest depth top to bottom 
+// traverse is a height of any node
 // - Depth of a node : Number of edges from the root to that node.
 // (Root to node - Top to bottom how much edges from root to that node is a depth of that node)
 // Level: Depth + 1.
@@ -18,7 +19,7 @@
 // Types of a Binary Tree-
 // 1. Full or Strict Binary Tree : All nodes have either 0 or 2 children...
 
-// example :                     Root
+// example :                       Root
 //                               ___O___
 //                               |      |
 //                             __|__    O

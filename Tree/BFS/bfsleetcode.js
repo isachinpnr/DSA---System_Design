@@ -59,7 +59,7 @@
 //   const remaining = targetSum - root.value;
 //   return hasPathSum(root.left, remaining) || hasPathSum(root.right, remaining);
 // }
-
+                
 // let targetSum = 22;
 // console.log(hasPathSum(root, targetSum));
 // Time & Space Complexity :
@@ -560,7 +560,7 @@
 //     if (node1 === null && node2 === null) return true;
 //     // one null another not -> not mirror
 //     if (node1 === null || node2 === null) return false;
-//     // value diff -> not mirrer
+//     // value diff -> not mirror
 //     if (node1.value !== node2.value) return false;
 
 //     // recursively check :
@@ -572,7 +572,7 @@
 // }
 // console.log(isSymmetric(root));
 
-// LeetCode Problem:297 : Serialize & Deserialize Binary Tree
+// LeetCode Problem:297 : Serialize & Deserialize Binary Tree.....
 
 // node class
 // class Node {
@@ -809,7 +809,7 @@
 //     if(node.right) queue.push(node.right);
 // }
 // return sum;
-// count sum
+// count sum.....
 // let index = 0;
 // while(index < result.length){
 //     sum+= result[index];

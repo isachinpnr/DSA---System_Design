@@ -16,7 +16,7 @@
 // root.right.right = new Node(9);
 // console.log(root);
 
-// var searchBST = function (root, val) {
+// var searchBST = function (root, val) {   
 
 //     // base case
 //     if (root === null) return null;
@@ -172,7 +172,7 @@
 //     find(node.left);
 
 //     count++;
-//     if (count === k) {
+//     if (count === k) {   
 //       ans = node.value;
 //       return;
 //     }
@@ -441,7 +441,7 @@
 // function balanceBST(root) {
 //   let result = [];
 //   function traverse(node) {
-//     // base case
+//     // base case...
 //     if (node === null) return;
 
 //     traverse(node.left);
@@ -465,7 +465,7 @@
 //   }
 //   return makeBST(result, 0, result.length - 1);
 // }
-
+ 
 // console.log(balanceBST(root));
 
 // LeetCode Problem : 653 : Two Sum In BST ............
@@ -762,4 +762,37 @@
 //   reverseInOrder(root);
 //   return root;
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

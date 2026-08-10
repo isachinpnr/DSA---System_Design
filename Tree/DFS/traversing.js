@@ -34,7 +34,7 @@
 //   if (node === null) return;
 
 //   // recursive call : visit the left subtree
-//   inOrder(node.left);
+//   inOrder(node.left);    
 //   // the 'work' print the current node's value
 //   console.log(node.value);
 //   //recursive call : visit the right subtree
@@ -180,4 +180,4 @@
 // or return the node that a time it's print a node where the return
 // 3. in a post-order traversal a node go to a very depth of a tree and try to find a both left & right subtree
 // of all the node , and where they think here has not an this node any left and right node so that a time they return
-// with print a node in return time
+// with print a node in return time.

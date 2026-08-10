@@ -218,7 +218,6 @@
     //     fast = fast.next;
     //   }
     //   // remove a cycle
-
     //   let prev = fast;
     //   // find a point where a meeting point address ( who point 30 in this case )
     //   while (prev.next !== slow) {

@@ -33,7 +33,7 @@
 
 //   // find intersection in Lists
 //   function intersectionList(headA, headB) {
-//     let PA = headA;
+//     let PA = headA;  
 //     let PB = headB;
 //     while (PA !== PB) {
 //       PA = PA === null ? headB : PA.next;
@@ -1299,49 +1299,49 @@
 // console.log('After Add Both :',arr.join(' -> '))
 
 // Problem14 : Copy List with Random Pointer.................................
-class LinkedList {
-  constructor() {
-    this.head = null;
-    this.tail = null;
-    this.size = 0;
-  }
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.size = 0;
+//   }
 
-  appendNode(data) {
-    const node = { value: data, next: null };
+//   appendNode(data) {
+//     const node = { value: data, next: null };
 
-    if (this.head === null) {
-      this.head = node;
-      this.tail = node;
-    } else {
-      this.tail.next = node;
-      this.tail = node;
-    }
-    this.size++;
-    return;
-  }
+//     if (this.head === null) {
+//       this.head = node;
+//       this.tail = node;
+//     } else {
+//       this.tail.next = node;
+//       this.tail = node;
+//     }
+//     this.size++;
+//     return;
+//   }
 
-  traverse() {
-    let current = this.head;
-    let result = [];
+//   traverse() {
+//     let current = this.head;
+//     let result = [];
 
-    while (current !== null) {
-      result.push(current.value);
-      current = current.next;
-    }
+//     while (current !== null) {
+//       result.push(current.value);
+//       current = current.next;
+//     }
 
-    console.log(result.join(" -> "));
-  }
-}
+//     console.log(result.join(" -> "));
+//   }
+// }
 
-// function of random pointer 
-function copyRandomPointer(){
+// // function of random pointer 
+// function copyRandomPointer(){
   
-}
+// }
 
-let list = new LinkedList();
-list.appendNode(1);
-list.appendNode(2);
-list.appendNode(3);
-list.appendNode(4);
-list.appendNode(5);
-console.log(list);
+// let list = new LinkedList();
+// list.appendNode(1);
+// list.appendNode(2);
+// list.appendNode(3);
+// list.appendNode(4);
+// list.appendNode(5);
+// console.log(list);
