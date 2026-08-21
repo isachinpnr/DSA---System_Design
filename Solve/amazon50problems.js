@@ -702,6 +702,88 @@
 // let word = "ABCCEDAS";
 // console.log(exist(board, word));
 
+//21. find duplicate numbers?
+// function findDuplicate(nums){
+ 
+//     let slow = nums[0];
+//     let fast = nums[0];
+
+//     do{
+//         slow = nums[slow];
+//         fast = nums[nums[fast]];
+//     }while(slow !== fast);
+
+//      slow = nums[0];
+//     while(slow !== fast){
+//         slow = nums[slow];
+//         fast = nums[fast];
+//     }
+//     return slow;
+// }
+// let nums = [1,3,4 ,4,2,2];
+// console.log(findDuplicate(nums));
+
+// 22. K-Diff Pairs in an Array?
+// function findPairs(nums , k){
+//     if(k < 0) return 0;
+    
+//     const seen = new Set();
+//     const pairs = new Set();
+
+//     for(let num of nums){
+//         if(seen.has(num - k)){
+//             pairs.add(`${num - k},${num}`);
+//         }
+//         if(seen.has(num + k)){
+//             pairs.add(`${num} , ${num + k}`);
+//         }
+//         seen.add(num);
+//     }
+//     return pairs.size;
+// }
+// let nums = [3,1,4,1,5];
+// let k = 2;
+// console.log(findPairs(nums , k));
+
+// 23. Subarray Sums Divisble By K?
+// function subArrayDivByK(nums , k){
+//     let remainderCount = new Map();
+//     remainderCount.set(0 , 1);
+
+//     let prefixSum = 0;
+//     let count = 0;
+
+//     for(let num of nums){
+//         prefixSum += num;
+
+//         let remainder = ((prefixSum % k) + k) % k;
+
+//         if(remainderCount.has(remainder)){
+//             count += remainderCount.get(remainder);
+//         }
+//         remainderCount.set(remainder , (remainderCount.get(remainder) || 0) + 1);
+//     }
+//     return count;
+// }
+// let nums = [4,5,0,-2,-3,1];
+// let k = 5;
+// console.log(subArrayDivByK(nums , k));
+
+// 24. First Missing Positive?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
