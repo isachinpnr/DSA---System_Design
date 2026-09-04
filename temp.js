@@ -160,3 +160,157 @@
 // console.log(diameterTree(root));
 
 
+// LeetCode Problem : 2471 : Minimum Number of Operations to Sort a Binary Tree By Level?
+// class Node{
+//     constructor(value){
+//         this.value = value;
+//         this.left = null;
+//         this.right = null;
+//     }
+// }
+// const root = new Node(1);
+// root.left = new Node(4);
+// root.left.left = new Node(7);
+// root.left.right = new Node(6);
+// root.right = new Node(3);
+// root.right.left = new Node(8);
+// root.right.left.left = new Node(9);
+// root.right.right = new Node(5);
+// root.right.right.left = new Node(10);
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+
+// function minimumOperations(root) {
+//     // Step 1: Level Order Traversal to collect values by level
+//     const levels = [];
+//     const queue = [root];
+
+//     while (queue.length > 0) {
+//         const levelSize = queue.length;
+//         const currentLevel = [];
+
+//         for (let i = 0; i < levelSize; i++) {
+//             const node = queue.shift();
+//             currentLevel.push(node.val);
+
+//             if (node.left) queue.push(node.left);
+//             if (node.right) queue.push(node.right);
+//         }
+
+//         levels.push(currentLevel);
+//     }
+
+//     // Step 2: Calculate minimum swaps for each level
+//     let totalOperations = 0;
+
+//     for (const level of levels) {
+//         totalOperations += minSwapsToSort(level);
+//     }
+
+//     return totalOperations;
+// }
+
+// function minSwapsToSort(arr) {
+//     const n = arr.length;
+//     if (n <= 1) return 0;   
+
+//     // Create array of pairs [value, originalIndex]
+//     const pairs = arr.map((val, idx) => [val, idx]);
+
+//     // Sort pairs by value
+//     pairs.sort((a, b) => a[0] - b[0]);
+
+//     // Track visited elements
+//     const visited = new Array(n).fill(false);
+//     let swaps = 0;
+
+//     // Visit each position
+//     for (let i = 0; i < n; i++) {
+//         // If already visited or already in correct position
+//         if (visited[i] || pairs[i][1] === i) continue;
+
+//         // Find cycle length
+//         let cycleSize = 0;
+//         let current = i;
+
+//         while (!visited[current]) {
+//             visited[current] = true;
+//             current = pairs[current][1]; // Move to where this element should be
+//             cycleSize++;
+//         }
+
+//         // For a cycle of size k, we need (k - 1) swaps
+//         if (cycleSize > 1) {
+//             swaps += cycleSize - 1;
+//         }
+//     }
+
+//     return swaps;
+// }
+// console.log(minSwapsToSort(arr));
+
+// Construct Uniform Parity Array I
+// var canConstruct = function(nums1) {
+//     let oddCount = 0;
+//     let evenCount = 0;
+    
+//     // Count odd and even numbers in the array
+//     for (let i = 0; i < nums1.length; i++) {
+//         if (nums1[i] % 2 === 0) {
+//             evenCount++;
+//         } else {
+//             oddCount++;
+//         }
+//     }
+    
+//     // Check if we can make all elements even
+//     const canMakeAllEven = (oddCount === 0) || (oddCount >= 2);
+    
+//     // Check if we can make all elements odd
+//     const canMakeAllOdd = (evenCount === 0) || (evenCount >= 2);
+    
+//     // Return true if either is possible
+//     return canMakeAllEven || canMakeAllOdd;
+// };
+// let nums1 = [2, 3];
+// console.log(canConstruct(nums1));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

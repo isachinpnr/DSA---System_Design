@@ -423,7 +423,7 @@
 
 // 14. Integer to English? - Remaining topic to understand
 // function numbertoWords(num) {
-//   // edge case
+//   // edge case.....
 
 //   const below20 = [
 //     "",
@@ -704,7 +704,7 @@
 
 //21. find duplicate numbers?
 // function findDuplicate(nums){
- 
+
 //     let slow = nums[0];
 //     let fast = nums[0];
 
@@ -726,7 +726,7 @@
 // 22. K-Diff Pairs in an Array?
 // function findPairs(nums , k){
 //     if(k < 0) return 0;
-    
+
 //     const seen = new Set();
 //     const pairs = new Set();
 
@@ -770,23 +770,379 @@
 // console.log(subArrayDivByK(nums , k));
 
 // 24. First Missing Positive?
+// function firstMissingPositive(nums){
+//     let n = nums.length;
+
+//     for(let i = 0; i < n; i++){
+//         while(nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] !== nums[i]){
+//             let temp = nums[nums[i] - 1];
+//             nums[nums[i] - 1] = nums[i];
+//             nums[i] = temp;
+//         }
+//     }
+//     for(let i = 0; i < n; i++){
+//         if(nums[i] !== i + 1){
+//             return i + 1;
+//         }
+//     }
+//     return n + 1;
+// }
+// let nums = [1,2,0];
+// console.log(firstMissingPositive(nums));
+
+// 25. Max Value of Equation?
+// function findMaxValueOfEquation(points, k) {
+//     // Deque to store indices of points
+//     const deque = [];
+//     let maxValue = -Infinity;
+
+//     for (let j = 0; j < points.length; j++) {
+//         const [xj, yj] = points[j];
+
+//         // Remove points from front that are out of range (xj - xi > k)
+//         while (deque.length > 0 && xj - points[deque[0]][0] > k) {
+//             deque.shift();
+//         }
+
+//         // If deque is not empty, calculate equation value with front element
+//         if (deque.length > 0) {
+//             const i = deque[0];
+//             const [xi, yi] = points[i];
+//             const value = yi + yj + xj - xi;
+//             maxValue = Math.max(maxValue, value);
+//         }
+
+//         // Maintain deque in decreasing order of (yi - xi)
+//         while (deque.length > 0) {
+//             const lastIdx = deque[deque.length - 1];
+//             const [xl, yl] = points[lastIdx];
+//             // If current point has larger or equal (y - x), remove last
+//             if (yl - xl <= yj - xj) {
+//                 deque.pop();
+//             } else {
+//                 break;
+//             }
+//         }
+
+//         // Add current point index to deque
+//         deque.push(j);
+//     }
+
+//     return maxValue;
+// }
+// let points = [[1,3],[2,0],[5,10],[6,-10]];
+// let k = 1;
+// console.log(findMaxValueOfEquations(points , k));
+
+// 26. Word break?
+// function wordBreak(s , wordDict){
+//     const wordSet = new Set(wordDict);
+
+//     const dp = new Array(s.length + 1).fill(false);
+//     dp[0] = true;
+
+//     for(let i = 1; i <= s.length; i++){
+//         for(let j = 0; j < i; j++){
+//             if(dp[j] && wordSet.has(s.substring(i , j))){
+//                 dp[i] = true;
+//                 break;
+//             }
+//         }
+//     }
+//     return dp[s.length];
+// }
+// let s = "leetcode";
+// let wordDict = ["leet" , "code"];
+// console.log(wordBreak(s , wordDict));
+
+// 27. Knight Dialer?
+// function knightDialer(n){
+//       // If n is 1, we can start from any of the 10 digits
+//     if (n === 1) return 10;
+
+//     const MOD = 10**9 + 7;
+
+//     // Map each number to possible next numbers using knight moves
+//     const moves = {
+//         0: [4, 6],
+//         1: [6, 8],
+//         2: [7, 9],
+//         3: [4, 8],
+//         4: [0, 3, 9],
+//         5: [],
+//         6: [0, 1, 7],
+//         7: [2, 6],
+//         8: [1, 3],
+//         9: [2, 4]
+//     };
+
+//     // dp[digit] = number of ways to end at this digit
+//     let dp = new Array(10).fill(1);
+
+//     // For length from 2 to n
+//     for (let step = 2; step <= n; step++) {
+//         const newDp = new Array(10).fill(0);
+
+//         for (let digit = 0; digit <= 9; digit++) {
+//             // For each possible next digit from current digit
+//             for (const nextDigit of moves[digit]) {
+//                 newDp[nextDigit] = (newDp[nextDigit] + dp[digit]) % MOD;
+//             }
+//         }
+
+//         dp = newDp;
+//     }
+
+//     // Sum all ways for all ending digits
+//     let total = 0;
+//     for (let digit = 0; digit <= 9; digit++) {
+//         total = (total + dp[digit]) % MOD;
+//     }
+
+//     return total;
+// }
+
+// 28. Unique Paths?
+// function uniquePaths(m , n){
+//     const dp = new Array(n).fill(1);
+
+//     for(let i = 1; i < m; i++){
+//         for(let j = 1; j < n; j++){
+//             dp[j] = dp[j] + dp[j - 1];
+//         }
+//     }
+//     return dp[n - 1];
+// }
+// let m = 3;
+// let n = 7;
+// console.log(uniquePaths(m , n));
+
+// 29. Longest Airthmetic Subsequence?
+
+// function longestAirthSeqLength(nums){
+//     const n = nums.length;
+//     if(n <= 2) return n;
+
+//     const dp = new Array(n).fill().map(() => new Map());
+//     let maxLen = 2;
+
+//     for(let i = 0; i < n; i++){
+//         for(let j = 0; j < i; j++){
+//             const diff = nums[i] - nums[j];
+//             const prevLen = dp[j].get(diff) || 1;
+//             const curLen = prevLen + 1;
+//             dp[i].set(diff , Math.max(dp[i].get(diff) || 0 , curLen));
+//             maxLen = Math.max(maxLen , curLen);
+//         }
+//     }
+//     return maxLen;
+// }
+
+// let nums = [3,6,9,12];
+// console.log(longestAirthSeqLength(nums));
+
+// 30. Regular Expression Matching?
+// function isMatch(s, p) {
+//     const m = s.length;
+//     const n = p.length;
+
+//     // dp[i][j] = true if first i chars of s match first j chars of p
+//     const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(false));
+
+//     // Empty string matches empty pattern
+//     dp[0][0] = true;
+
+//     // Handle patterns like a*, a*b*, a*b*c* that can match empty string
+//     for (let j = 2; j <= n; j++) {
+//         if (p[j - 1] === '*') {
+//             dp[0][j] = dp[0][j - 2];
+//         }
+//     }
+
+//     // Fill the DP table
+//     for (let i = 1; i <= m; i++) {
+//         for (let j = 1; j <= n; j++) {
+//             const sChar = s[i - 1];
+//             const pChar = p[j - 1];
+
+//             if (pChar === '*') {
+//                 // Star can match zero or more of preceding element
+//                 const prevChar = p[j - 2];
+
+//                 // Case 1: Match zero occurrences (skip the pattern 'prevChar*')
+//                 dp[i][j] = dp[i][j - 2];
+
+//                 // Case 2: Match one or more occurrences
+//                 // Check if current char matches the pattern's preceding char
+//                 if (prevChar === '.' || prevChar === sChar) {
+//                     dp[i][j] = dp[i][j] || dp[i - 1][j];
+//                 }
+//             } else {
+//                 // Regular character or '.'
+//                 if (pChar === '.' || pChar === sChar) {
+//                     dp[i][j] = dp[i - 1][j - 1];
+//                 }
+//             }
+//         }
+//     }
+
+//     return dp[m][n];
+// };
+// let s = "aa";
+// let p = "a";
+// console.log(isMatch(s , p));
+
+// 31. Longest Valid Parantheses?
+// function longestValidParentheses(s) {
+// let maxLen = 0;
+// let stack = [-1];
+
+// for(let i = 0; i < s.length; i++){
+//     if(s[i] === '('){
+//         stack.push(i);
+//     }else{
+//         stack.pop();
+
+//         if(stack.length === 0){
+//             stack.push(i);
+//         }else{
+//             maxLen = Math.max(maxLen , i - stack[stack.length - 1]);
+//         }
+//     }
+// }
+// return maxLen;
 
 
+// another approach.....
+// efficient method....
 
+//     let open = 0;
+//     let close = 0;
+//     let maxLength = 0;
 
+//     for (let i = 0; i < s.length; i++) {
+//         if (s[i] === "(") {
+//             open++;
+//         }
+//         else if (s[i] === ")") {
+//             close++;
+//         }
+//         if (open === close) {
+//             maxLength = Math.max(maxLength, open + close);
+//         }
+//         else if (close > open) {
+//             open = 0;
+//             close = 0;
+//         }
+//     }
+//     open = 0;
+//     close = 0;
 
+//     for (let i = s.length; i >= 0; i--) {
+//         if (s[i] === "(") {
+//             open++;
+//         }
+//         if (s[i] === ")") {
+//             close++;
+//         }
+//         if (open === close) {
+//             maxLength = Math.max(maxLength, open + close);
+//         }
+//         else if (open > close) {
+//             open = 0;
+//             close = 0;
+//         }
+//     }
+//     return maxLength;
+// }
+// let s = ")()())";
+// console.log(longestValidParentheses(s));
 
+// 32.Minimum Difficulty of a job Schedule?
+// function minDifficulty(jobDifficulty, d) {
+//     let n = jobDifficulty.length;
 
+//     if (d > n) return -1;
 
+//     const memo = Array.from({ length: n }, () => new Array(d + 1).fill(-1));
+//     function dfs(start, daysLeft) {
+//         if (start === n && daysLeft === 0) return 0;
+//         if (start === n || daysLeft === 0) return Infinity;
+//         if (n - start < daysLeft) return Infinity;
+//         if (memo[start][daysLeft] !== -1) return memo[start][daysLeft];
 
+//         let currentDayMax = 0;
+//         let minResult = Infinity;
 
+//         for (let end = start; end <= n - daysLeft; end++) {
+//             currentDayMax = Math.max(currentDayMax, jobDifficulty[end]);
+//             const remainingCost = dfs(end + 1, daysLeft - 1);
+//             const totalCost = currentDayMax + remainingCost;
+//             minResult = Math.min(minResult, totalCost);
+//         }
+//         memo[start][daysLeft] = minResult;
+//         return minResult;
+//     }
+//     const answer = dfs(0 , d);
+//     return answer === Infinity ? -1 : answer;
+// }
+// let jobDifficulty = [6, 5, 4, 3, 2, 1];
+// let d = 2;
+// console.log(minDifficulty(jobDifficulty, d));
 
+// 33. Minimum Cost to cut a Stick?
+// function minCost(n, cuts) {
+//     // Add boundaries and sort
+//     const extendedCuts = [0, ...cuts, n];
+//     extendedCuts.sort((a, b) => a - b);
 
+//     const m = extendedCuts.length;
 
+//     // DP table: dp[i][j] = min cost to cut stick from extendedCuts[i] to extendedCuts[j]
+//     const dp = Array.from({ length: m }, () => new Array(m).fill(0));
 
+//     // length = number of segments in the current stick piece
+//     // We start from length 2 (need at least 2 points to make a cut)
+//     for (let length = 2; length < m; length++) {
+//         for (let i = 0; i + length < m; i++) {
+//             const j = i + length;
 
+//             // Initialize with infinity
+//             dp[i][j] = Infinity;
 
+//             // Try all possible first cuts between i and j
+//             for (let k = i + 1; k < j; k++) {
+//                 const cost = (extendedCuts[j] - extendedCuts[i]) + dp[i][k] + dp[k][j];
+//                 dp[i][j] = Math.min(dp[i][j], cost);
+//             }
+//         }
+//     }
 
+//     return dp[0][m - 1];
+// };
+
+// 34. Find the Index of the first Occurrence in a String?
+// function strStr(haystack, needle) {
+//     // edge cases
+//     if (needle === "") return 0;
+//     if (needle.length > haystack.length) return -1;
+
+//     for (let i = 0; i <= haystack.length - needle.length; i++) {
+//         let match = true;
+
+//         for (let j = 0; j < needle.length; j++) {
+//             if (haystack[i + j] !== needle[j]) {
+//                 match = false;
+//                 break;
+//             }
+//         }
+//         if (match) return i;
+//     }
+//     return -1;
+// }
+// let haystack = "leetcode";
+// let needle = "leeto";
+// console.log(strStr(haystack, needle));
 
 
 
