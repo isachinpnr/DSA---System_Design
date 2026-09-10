@@ -1144,12 +1144,694 @@
 // let needle = "leeto";
 // console.log(strStr(haystack, needle));
 
+// 35. Minimum Remove to make Valid Parentheses?
+// function minRemoveToMakeValid(s) {
+//     const chars = s.split('');
+//     const stack = [];
+
+//     for (let i = 0; i < chars.length; i++) {
+//         if (chars[i] === "(") {
+//             stack.push(i);
+//         } else if (chars[i] === ")") {
+//             if (stack.length > 0) {
+//                 stack.pop();
+//             } else {
+//                 chars[i] = '';
+//             }
+//         }
+//     }
+
+//     while (stack.length > 0) {
+//         const idx = stack.pop();
+//         chars[idx] = '';
+//     }
+//     return chars.join('');
+// }
+// let s = "lee(t(c)o)de)";
+// console.log(minRemoveToMakeValid(s));
+
+// 36. Basic Calculator II?
+// function calculate(s) {
+//     if (!s || s.length === 0) return 0;
+
+//     const stack = [];
+//     let currentNumber = 0;
+//     let lastOperator = "+";
+
+//     for (let i = 0; i < s.length; i++) {
+//         const char = s[i];
+
+//         if (char >= '0' && char <= '9') {
+//             currentNumber = currentNumber * 10 + (char - '0');
+//         }
+//         if ((char < '0' || char > '9') && char !== ' ') {
+//             switch (lastOperator) {
+//                 case '+':
+//                     stack.push(currentNumber);
+//                     break;
+//                 case '-':
+//                     stack.push(-currentNumber)
+//                     break;
+//                 case '*':
+//                     stack.push(stack.pop() * currentNumber);
+//                     break;
+//                 case '/':
+//                     stack.push(Math.trunc(stack.pop() / currentNumber));
+//                     break;
+//             }
+//             lastOperator = char;
+//             currentNumber = 0;
+//         }
+//     }
+//     switch (lastOperator) {
+//         case '+':
+//             stack.push(currentNumber);
+//             break;
+//         case '-':
+//             stack.push(-currentNumber)
+//             break;
+//         case '*':
+//             stack.push(stack.pop() * currentNumber);
+//             break;
+//         case '/':
+//             stack.push(Math.trunc(stack.pop() / currentNumber));
+//             break;
+//     }
+
+//     let result = 0;
+//     for (let num of stack) {
+//         result += num;
+//     }
+//     return result;
+// }
+// let s = "3+2*2";
+// console.log(calculate(s));
+
+// 37. Power Of Two?
+// function isPowerOfTwo(n) {
+//     return n > 0 && (n & (n - 1)) === 0;
+// }
+// let n = 8;
+// console.log(isPowerOfTwo(n));
+
+// 38. String to Integer (atoi)?
+// function myAtoi(s) {
+//     const INT_MAX = 2147483647;
+//     const INT_MIN = -2147483648;
+
+//     let i = 0;
+//     const n = s.length;
+
+//     // Step 1: Skip leading whitespace
+//     while (i < n && s[i] === ' ') {
+//         i++;
+//     }
+
+//     // Step 2: Check for sign
+//     let sign = 1;
+//     if (i < n && s[i] === '-') {
+//         sign = -1;
+//         i++;
+//     } else if (i < n && s[i] === '+') {
+//         i++;
+//     }
+
+//     // Step 3: Read digits and convert to integer
+//     let result = 0;
+//     while (i < n && s[i] >= '0' && s[i] <= '9') {
+//         const digit = s[i] - '0';
+
+//         // Step 4: Check for overflow before adding digit
+//         if (result > Math.floor(INT_MAX / 10) || 
+//             (result === Math.floor(INT_MAX / 10) && digit > INT_MAX % 10)) {
+//             return sign === 1 ? INT_MAX : INT_MIN;
+//         }
+
+//         result = result * 10 + digit;
+//         i++;
+//     }
+
+//     // Step 5: Return result with sign
+//     return result * sign;
+// };
+// let s = "42";
+// console.log(myAtoi(s));
+
+// 39. Max Points on a Line?
+// let maxPoints = (points) => {
+//     const n = points.length;
+
+//     // If we have 2 or fewer points, they all lie on the same line
+//     if (n <= 2) return n;
+
+//     let maxPoints = 1;
+
+//     // Consider each point as the anchor
+//     for (let i = 0; i < n; i++) {
+//         const slopes = new Map();
+//         let duplicates = 0;
+//         let currentMax = 0;
+
+//         // Check all other points
+//         for (let j = 0; j < n; j++) {
+//             if (i === j) continue;
+
+//             const dx = points[j][0] - points[i][0];
+//             const dy = points[j][1] - points[i][1];
+
+//             // Check for duplicate points
+//             if (dx === 0 && dy === 0) {
+//                 duplicates++;
+//                 continue;
+//             }
+
+//             // Get reduced slope
+//             const slope = getReducedSlope(dx, dy);
+
+//             // Count points with this slope
+//             const count = (slopes.get(slope) || 0) + 1;
+//             slopes.set(slope, count);
+
+//             // Update current max for this anchor
+//             currentMax = Math.max(currentMax, count);
+//         }
+
+//         // Total points on the best line through this anchor
+//         // = best slope count + duplicate points + 1 (the anchor itself)
+//         maxPoints = Math.max(maxPoints, currentMax + duplicates + 1);
+//     }
+
+//     return maxPoints;
+// };
+
+// // Helper function to get reduced slope as a string
+// function getReducedSlope(dx, dy) {
+//     // Handle vertical line
+//     if (dx === 0) {
+//         return 'vertical';
+//     }
+
+//     // Handle horizontal line
+//     if (dy === 0) {
+//         return 'horizontal';
+//     }
+
+//     // Reduce fraction by dividing by GCD
+//     const g = gcd(Math.abs(dy), Math.abs(dx));
+//     const reducedDy = dy / g;
+//     const reducedDx = dx / g;
+
+//     // Ensure consistent representation
+//     // If dx is negative, flip both to keep dx positive
+//     if (reducedDx < 0) {
+//         return `${-reducedDy}/${-reducedDx}`;
+//     }
+//     return `${reducedDy}/${reducedDx}`;
+// }
+
+// // Helper function to calculate Greatest Common Divisor
+// function gcd(a, b) {
+//     if (b === 0) return a;
+//     return gcd(b, a % b);
+// }
+
+// let points = [[1, 1], [2, 2], [3, 3]];
+// console.log(maxPoints(points));
+
+// 40. Remove K Digits?
+// function removeKdigits(nums, k) {
+//     if (k >= nums.length) return "0";
+
+//     const stack = [];
+
+//     for (let digit of nums) {
+//         while (k > 0 && stack.length > 0 && stack[stack.length - 1] > digit) {
+//             stack.pop();
+//             k--;
+//         }
+//         stack.push(digit);
+//     }
+//     while (k > 0) {
+//         stack.pop();
+//         k--;
+//     }
+//     let result = stack.join('').replace(/^0+/, '');
+//     return result === '' ? '0' : result;
+// }
+// let nums = "1432219";
+// let k = 3;
+// console.log(removeKdigits(nums , k));
+
+// 41. Clone Graph?
+// function cloneGraph(node) {
+//     // Edges Cases: 
+//     if (!node) return null;
+
+//     const visited = new Map();
+
+//     function dfs(originalNode) {
+//         if (visited.has(originalNode)) {
+//             return visited.get(originalNode);
+//         }
+//         const cloneNode = new Node(originalNode.val);
+//         visited.set(originalNode, cloneNode);
+
+//         for (let neighbor of originalNode.neighbors) {
+//             const clonedNeighbor = dfs(neighbor);
+//             cloneNode.neighbors.push(clonedNeighbor);
+//         }
+//         return cloneNode;
+//     }
+//     return dfs(node);
+// }
+// console.log(cloneGraph(node));
+
+// 42. House Robber III?
+// class Node {
+//     constructor(value) {
+//         this.value = value;
+//         this.left = null;
+//         this.right = null;
+//     }
+// }
+// const root = new Node(3);
+// root.left = new Node(2);
+// root.right = new Node(3);
+// root.left.right = new Node(3);
+// root.right.right = new Node(1);//
+// anther test case
+// const root = new Node(3);
+// root.left = new Node(4);
+// root.left.left = new Node(1);
+// root.right = new Node(5);
+// root.right.right = new Node(1);
+// root.left.right = new Node(3);
+
+// function rob(root) {
+//     function dfs(node) {
+
+//         if (!node) return [0, 0];
 
 
+//         const left = dfs(node.left);
+//         const right = dfs(node.right);
 
+//         const robCurrent = node.value + left[1] + right[1];
+//         const dontRobCurrent = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+//         return [robCurrent, dontRobCurrent];
+//     }
+//     const result = dfs(root);
+//     return Math.max(result[0], result[1]);
+// }
+// console.log(rob(root));
 
+// 43. Diameter of Binary Tree?
+// class Node {
+//     constructor(value) {
+//         this.value = value;
+//         this.left = null;
+//         this.right = null;
+//     }
+// }
+// const root = new Node(1);
+// root.left = new Node(2);
+// root.right = new Node(3);
+// root.left.left = new Node(4);
+// root.left.right = new Node(5);
 
+// function diameterOfBinaryTree(root) {
+//     let diameter = 0;
+//     function height(node) {
+//         if (node === null) return 0;
 
+//         let left = height(node.left);
+//         let right = height(node.right);
+
+//         diameter = Math.max(diameter, left + right);
+//         return Math.max(left, right) + 1;
+//     }
+//     height(root);
+//     return diameter;
+// }
+// console.log(diameterOfBinaryTree(root));
+
+// 44. Critical Connection in a Network?
+// function criticalConnection(n , connection){
+//          const graph = Array.from({ length: n }, () => []);
+//   for (let [u, v] of connections) {
+//     graph[u].push(v);
+//     graph[v].push(u);
+//   }
+
+//   const disc = new Array(n).fill(0);
+//   const low = new Array(n).fill(0);
+//   const result = [];
+//   let time = 0;
+
+//   function dfs(u, parent) {
+//     disc[u] = low[u] = ++time;
+
+//     for (let v of graph[u]) {
+//       if (v === parent) continue;
+
+//       if (disc[v] === 0) {
+//         dfs(v, u);
+//         low[u] = Math.min(low[u], low[v]);
+
+//         if (low[v] > disc[u]) {
+//           result.push([u, v]);
+//         }
+//       } else {
+//         low[u] = Math.min(low[u], disc[v]);
+//       }
+//     }
+//   }
+//   for (let i = 0; i < n; i++) {
+//     if (disc[i] === 0) dfs(i, -1);
+//   }
+//   return result;
+// }
+
+// 45. Redundant Connection?
+// function findRedundantConnection(edges) {
+//     const n = edges.length;
+
+//     const parent = new Array(n + 1);
+//     for (let i = 1; i <= n; i++) {
+//         parent[i] = i;
+//     }
+//     function find(node) {
+//         if (parent[node] !== node) {
+//             parent[node] = find(parent[node]);
+//         }
+//         return parent[node];
+//     }
+//     function union(a, b) {
+//         const rootA = find(a);
+//         const rootB = find(b);
+//         if (rootA === rootB) return false;
+//         parent[rootA] = rootB;
+//         return true;
+//     }
+//     for (const [a, b] of edges) {
+//         if (!union(a, b)) {
+//             return [a, b];
+//         }
+//     }
+//     return [];
+// }
+// let edges = [[1, 2], [1, 3], [2, 3]];
+// console.log(findRedundantConnection(edges));
+
+// 46. Redundant Connection-II?
+// function findRedundantDirectedConnection (edges) {
+//     const n = edges.length;
+
+//     // Step 1: Calculate in-degrees and find node with two parents
+//     const parent = new Array(n + 1).fill(0);
+//     let candidate1 = null;  // First edge pointing to the node with two parents
+//     let candidate2 = null;  // Second edge pointing to the node with two parents
+
+//     for (const edge of edges) {
+//         const [u, v] = edge;
+//         if (parent[v] === 0) {
+//             parent[v] = u;
+//         } else {
+//             // Found a node with two parents
+//             candidate1 = [parent[v], v];
+//             candidate2 = [u, v];
+//             break;
+//         }
+//     }
+
+//     // Step 2: Union-Find helper functions
+//     const ufParent = new Array(n + 1);
+//     for (let i = 1; i <= n; i++) {
+//         ufParent[i] = i;
+//     }
+
+//     function find(x) {
+//         if (ufParent[x] !== x) {
+//             ufParent[x] = find(ufParent[x]);
+//         }
+//         return ufParent[x];
+//     }
+
+//     function union(x, y) {
+//         const rootX = find(x);
+//         const rootY = find(y);
+//         if (rootX === rootY) return false;
+//         ufParent[rootX] = rootY;
+//         return true;
+//     }
+
+//     // Step 3: Process edges
+//     if (candidate1 === null) {
+//         // Case A: No node has two parents → there's a cycle
+//         for (const [u, v] of edges) {
+//             if (!union(u, v)) {
+//                 return [u, v];
+//             }
+//         }
+//     } else {
+//         // Case B: A node has two parents
+//         // Try removing candidate2 (the last one) first
+//         for (const [u, v] of edges) {
+//             // Skip candidate2
+//             if (u === candidate2[0] && v === candidate2[1]) continue;
+
+//             if (!union(u, v)) {
+//                 // Removing candidate2 creates a cycle
+//                 // So we must remove candidate1
+//                 return candidate1;
+//             }
+//         }
+
+//         // Removing candidate2 works (no cycle)
+//         return candidate2;
+//     }
+
+//     return [];
+// };
+
+// let edges = [[1, 2], [1, 3], [2, 3]];
+// console.log(findRedundantDirectedConnection(edges));
+
+// 47. Capacity To Ship Packages Within D Days?
+// function shipwithinDays(weights, days) {
+//     function canShip(capacity) {
+//         let daysNeeded = 1;
+//         let currentLoad = 0;
+
+//         for (const weight of weights) {
+//             if (currentLoad + weight <= capacity) {
+//                 currentLoad += weight;
+//             } else {
+//                 daysNeeded++;
+//                 currentLoad = weight;
+//             }
+//         }
+
+//         return daysNeeded <= days;
+//     }
+
+//     // Binary search range
+//     let low = Math.max(...weights);
+//     let high = weights.reduce((sum, w) => sum + w, 0);
+
+//     // Binary search for minimum capacity
+//     while (low < high) {
+//         const mid = Math.floor((low + high) / 2);
+
+//         if (canShip(mid)) {
+//             high = mid;  // Try smaller capacity
+//         } else {
+//             low = mid + 1;  // Need larger capacity
+//         }
+//     }
+
+//     return low;
+// }
+// let weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// let days = 5;
+// console.log(shipwithinDays(weights, days));
+
+// 48. Rotting Oranges?
+// function orangesRotting(grid) {
+//     const rows = grid.length;
+//     const cols = grid[0].length;
+
+//     const queue = []; // stores [row, col] of rotten oranges
+//     let freshCount = 0; // how many fresh oranges are left
+//     let minutes = 0; // time counter
+
+//     // 1. Count fresh oranges and collect initial rotten ones
+//     for (let r = 0; r < rows; r++) {
+//         for (let c = 0; c < cols; c++) {
+//             if (grid[r][c] === 1) freshCount++;
+//             if (grid[r][c] === 2) queue.push([r, c]);
+//         }
+//     }
+
+//     // If there are no fresh oranges, time is 0
+//     if (freshCount === 0) return 0;
+
+//     // 2. BFS – four possible directions (up, down, left, right)
+//     const directions = [
+//         [-1, 0],
+//         [1, 0],
+//         [0, -1],
+//         [0, 1],
+//     ];
+
+//     while (queue.length > 0) {
+//         const size = queue.length; // oranges that will rot this minute
+//         let rottedThisMinute = false;
+
+//         // Process all oranges that are already rotten at this minute
+//         for (let i = 0; i < size; i++) {
+//             const [r, c] = queue.shift(); // take one rotten orange
+
+//             // Try to infect each neighbor
+//             for (const [dr, dc] of directions) {
+//                 const newRow = r + dr;
+//                 const newCol = c + dc;
+//                 // Check bounds and if it's a fresh orange
+//                 if (
+//                     newRow >= 0 &&
+//                     newRow < rows &&
+//                     newCol >= 0 &&
+//                     newCol < cols &&
+//                     grid[newRow][newCol] === 1
+//                 ) {
+//                     grid[newRow][newCol] = 2; // make it rotten
+//                     queue.push([newRow, newCol]); // add to queue for next minute
+//                     freshCount--;
+//                     rottedThisMinute = true;
+//                 }
+//             }
+//         }
+
+//         // If we actually rotted any orange this minute, increase time
+//         if (rottedThisMinute) minutes++;
+//     }
+
+//     // 3. If still fresh oranges remain, impossible → -1
+//     return freshCount === 0 ? minutes : -1;
+// };
+// let grid = [[2, 1, 1], [1, 1, 0], [0, 1, 1]];
+// console.log(orangesRotting(grid));
+
+// 49. Longest Reapeating Character Replacement?
+// var characterReplacement = function(s, k) {
+//     const count = new Map();
+//     let left = 0;
+//     let maxFreq = 0;
+//     let maxLength = 0;
+    
+//     for (let right = 0; right < s.length; right++) {
+//         // Add current character to window
+//         const rightChar = s[right];
+//         count.set(rightChar, (count.get(rightChar) || 0) + 1);
+        
+//         // Update max frequency in current window
+//         maxFreq = Math.max(maxFreq, count.get(rightChar));
+        
+//         // Window size = right - left + 1
+//         // Changes needed = window size - maxFreq
+//         // If changes needed > k, shrink window
+//         while ((right - left + 1) - maxFreq > k) {
+//             const leftChar = s[left];
+//             count.set(leftChar, count.get(leftChar) - 1);
+//             left++;
+//         }
+        
+//         // Update max length
+//         maxLength = Math.max(maxLength, right - left + 1);
+//     }
+    
+//     return maxLength;
+// };
+// let s = "ABAB";
+// let k = 2;
+// console.log(characterReplacement(s , k));
+
+// 50. LRU Cache?
+// class LRUCache {
+//     constructor(capacity) {
+//         this.capacity = capacity;
+//         this.map = new Map(); // key → node
+        
+//         // Create dummy head and tail nodes
+//         this.head = new Node(0, 0);
+//         this.tail = new Node(0, 0);
+        
+//         // Connect head and tail
+//         this.head.next = this.tail;
+//         this.tail.prev = this.head;
+//     }
+    
+//     get(key) {
+//         if (!this.map.has(key)) {
+//             return -1;
+//         }
+        
+//         const node = this.map.get(key);
+        
+//         // Move to front (most recently used)
+//         this.removeNode(node);
+//         this.addToFront(node);
+        
+//         return node.value;
+//     }
+    
+//     put(key, value) {
+//         // If key exists, update value and move to front
+//         if (this.map.has(key)) {
+//             const node = this.map.get(key);
+//             node.value = value;
+//             this.removeNode(node);
+//             this.addToFront(node);
+//         } else {
+//             // Create new node
+//             const newNode = new Node(key, value);
+            
+//             // If at capacity, remove least recently used (tail.prev)
+//             if (this.map.size >= this.capacity) {
+//                 const lru = this.tail.prev;
+//                 this.removeNode(lru);
+//                 this.map.delete(lru.key);
+//             }
+            
+//             // Add new node to front
+//             this.addToFront(newNode);
+//             this.map.set(key, newNode);
+//         }
+//     }
+    
+//     // Helper: Add node right after head
+//     addToFront(node) {
+//         node.prev = this.head;
+//         node.next = this.head.next;
+//         this.head.next.prev = node;
+//         this.head.next = node;
+//     }
+    
+//     // Helper: Remove node from list
+//     removeNode(node) {
+//         node.prev.next = node.next;
+//         node.next.prev = node.prev;
+//     }
+// }
+
+// class Node {
+//     constructor(key, value) {
+//         this.key = key;
+//         this.value = value;
+//         this.prev = null;
+//         this.next = null;
+//     }
+// }
 
 
 
